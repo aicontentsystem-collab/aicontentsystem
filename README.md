@@ -1,0 +1,2 @@
+# aicontentsystem
+generate content
