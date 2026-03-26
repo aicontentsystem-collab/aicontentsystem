@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-adsense-account" content="ca-pub-5033783482062814">
+<meta name="tiktok-domain-verification" content="RSUrYZUwXt2dblWZjDi4Z2eHDheDHSbd">
+<title>AI Content System - Automated Content Creation Platform</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0d0d0f;--paper:#f5f3ee;--cream:#ede9e1;--mid:#c8c4bc;--ghost:#8a877f;--accent:#e8410a;--green:#0a8a4a;--amber:#c47a00;--blue:#1a6aff}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--mid);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:56px}
+.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.5px}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:6px}
+.nav-link{padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;color:var(--ghost);cursor:pointer;border:none;background:none;transition:all 0.15s;font-family:'DM Sans',sans-serif}
+.nav-link:hover{background:var(--cream);color:var(--ink)}
+.hero{padding:100px 40px 80px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-label{display:inline-flex;align-items:center;gap:8px;background:var(--cream);border:1px solid var(--mid);border-radius:100px;padding:4px 14px;font-size:12px;font-weight:500;color:var(--ghost);margin-bottom:24px;font-family:'DM Mono',monospace}
+.hero-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
+.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(36px,5vw,58px);line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{font-size:17px;color:var(--ghost);line-height:1.7;max-width:420px;margin-bottom:32px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:var(--ink);color:var(--paper);border:none;border-radius:8px;padding:12px 24px;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--accent);transform:translateY(-1px)}
+.btn-outline{background:none;color:var(--ink);border:1px solid var(--mid);border-radius:8px;padding:12px 24px;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block}
+.btn-outline:hover{border-color:var(--ink)}
+.hero-visual{background:var(--cream);border:1px solid var(--mid);border-radius:20px;padding:24px}
+.pipeline-mini{display:flex;flex-direction:column;gap:8px}
+.pipe-step{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--mid);border-radius:10px;padding:10px 14px;animation:slideIn 0.4s ease both}
+.pipe-step:nth-child(1){animation-delay:0.1s}
+.pipe-step:nth-child(2){animation-delay:0.2s}
+.pipe-step:nth-child(3){animation-delay:0.3s}
+.pipe-step:nth-child(4){animation-delay:0.4s}
+.pipe-step:nth-child(5){animation-delay:0.5s}
+@keyframes slideIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
+.pipe-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.pipe-name{font-size:13px;font-weight:500}
+.pipe-sub{font-size:11px;color:var(--ghost);font-family:'DM Mono',monospace}
+.pipe-score{margin-left:auto;font-family:'DM Mono',monospace;font-size:12px;font-weight:500}
+.section{padding:80px 40px;max-width:1100px;margin:0 auto}
+.section-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;color:var(--ghost);border:1px solid var(--mid);border-radius:4px;padding:3px 8px;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.5px}
+.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,4vw,42px);letter-spacing:-1.5px;line-height:1.1;margin-bottom:48px}
+.section-title em{font-style:normal;color:var(--accent)}
+.agents-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.agent-card{background:var(--paper);border:1px solid var(--mid);border-radius:20px;padding:24px;transition:all 0.2s}
+.agent-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+.agent-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.agent-avatar{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:1px solid var(--mid)}
+.agent-name{font-family:'Syne',sans-serif;font-weight:700;font-size:16px}
+.agent-role{font-size:12px;color:var(--ghost);font-family:'DM Mono',monospace}
+.agent-desc{font-size:13px;color:var(--ghost);line-height:1.6;margin-bottom:14px}
+.agent-stat{display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid var(--cream);font-size:12px}
+.stat-key{color:var(--ghost)}
+.stat-val{font-family:'DM Mono',monospace;font-weight:500}
+.status-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:3px 8px;border-radius:100px;margin-top:12px}
+.badge-active{background:#e8f5e9;color:var(--green)}
+.badge-pending{background:#fff8e1;color:var(--amber)}
+.status-dot{width:6px;height:6px;border-radius:50%}
+.dot-active{background:var(--green);animation:blink 2s infinite}
+.dot-pending{background:var(--amber)}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:48px}
+.feature-card{background:var(--cream);border:1px solid var(--mid);border-radius:16px;padding:20px}
+.feature-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--ghost);margin-bottom:8px}
+.feature-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px}
+.feature-desc{font-size:13px;color:var(--ghost);line-height:1.6}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;background:var(--ink);border-radius:20px;padding:40px;margin-top:48px}
+.stat-block{text-align:center}
+.stat-big{font-family:'Syne',sans-serif;font-weight:800;font-size:36px;color:var(--paper);letter-spacing:-1px}
+.stat-desc{font-size:13px;color:var(--ghost);margin-top:4px}
+.divider{height:1px;background:var(--mid);max-width:1100px;margin:0 auto}
+.cta-section{padding:80px 40px;text-align:center;max-width:700px;margin:0 auto}
+.cta-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,4vw,48px);letter-spacing:-1.5px;margin-bottom:16px}
+.cta-title em{font-style:normal;color:var(--accent)}
+.cta-desc{font-size:16px;color:var(--ghost);margin-bottom:32px;line-height:1.7}
+footer{padding:40px;text-align:center;color:var(--ghost);font-size:13px;border-top:1px solid var(--mid)}
+footer a{color:var(--ghost);text-decoration:none;margin:0 12px}
+footer a:hover{color:var(--ink)}
+@media(max-width:768px){.hero{grid-template-columns:1fr;padding:60px 20px 40px}.section{padding:60px 20px}nav{padding:0 20px}.stats-row{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">AI<span>.</span>Content</div>
+  <div class="nav-links">
+    <button class="nav-link" onclick="document.getElementById('agents').scrollIntoView({behavior:'smooth'})">Agents</button>
+    <button class="nav-link" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Features</button>
+    <button class="nav-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-label">System status: all agents online</div>
+    <h1>Six AI agents.<br><em>One revenue machine.</em></h1>
+    <p>An autonomous pipeline that finds, edits, and publishes viral short-form content while every agent learns from its mistakes to maximize profit.</p>
+    <div class="hero-btns">
+      <a href="#agents" class="btn-primary">Meet the agents</a>
+      <a href="/terms.html" class="btn-outline">Terms of Service</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="pipeline-mini">
+      <div class="pipe-step">
+        <div class="pipe-icon" style="background:#fff0eb">&#128737;</div>
+        <div><div class="pipe-name">NEXUS &mdash; Compliance</div><div class="pipe-sub">score: 100/100 &middot; approved</div></div>
+        <div class="pipe-score" style="color:#0a8a4a">&#10003;</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon" style="background:#ebf0ff">&#128202;</div>
+        <div><div class="pipe-name">SCOUT &mdash; Trend detection</div><div class="pipe-sub">found 10 CC videos</div></div>
+        <div class="pipe-score" style="color:#1a6aff">&#8593;</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon" style="background:#ebffef">&#9986;</div>
+        <div><div class="pipe-name">IRIS &mdash; Clip selector</div><div class="pipe-sub">hook score: 94/100</div></div>
+        <div class="pipe-score" style="color:#0a8a4a">&#10003;</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon" style="background:#fff8eb">&#127916;</div>
+        <div><div class="pipe-name">FORGE &mdash; Video editor</div><div class="pipe-sub">9:16 &middot; captions burned</div></div>
+        <div class="pipe-score" style="color:#c47a00">6.8MB</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon" style="background:#ffebed">&#128221;</div>
+        <div><div class="pipe-name">ECHO &mdash; Blog agent</div><div class="pipe-sub">SEO post published</div></div>
+        <div class="pipe-score" style="color:#0a8a4a">&#8593;</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section" id="agents">
+  <div class="section-tag">The team</div>
+  <div class="section-title">Six agents with <em>personality.</em></div>
+  <div class="agents-grid">
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-avatar" style="background:#fff0eb">&#128737;</div>
+        <div><div class="agent-name">NEXUS</div><div class="agent-role">compliance-agent</div></div>
+      </div>
+      <div class="agent-desc">Paranoid perfectionist. Checks every video for Creative Commons licensing, channel trust, content policy, and AI legal risk before anything is processed. Score below 80 is a hard reject.</div>
+      <div class="agent-stat"><span class="stat-key">Checks run this month</span><span class="stat-val">1,247</span></div>
+      <div class="agent-stat"><span class="stat-key">Blocked rate</span><span class="stat-val">89%</span></div>
+      <div class="agent-stat"><span class="stat-key">Average compliance score</span><span class="stat-val">100/100</span></div>
+      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-avatar" style="background:#ebf0ff">&#128202;</div>
+        <div><div class="agent-name">SCOUT</div><div class="agent-role">trend-detection-agent</div></div>
+      </div>
+      <div class="agent-desc">Obsessive data hunter. Tracks 3 niches and 47 keywords simultaneously. Scores videos by view velocity and engagement rate to find the wave before it breaks.</div>
+      <div class="agent-stat"><span class="stat-key">Videos found per day</span><span class="stat-val">10</span></div>
+      <div class="agent-stat"><span class="stat-key">View velocity tracked</span><span class="stat-val">847/hr</span></div>
+      <div class="agent-stat"><span class="stat-key">Prediction accuracy</span><span class="stat-val">78%</span></div>
+      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-avatar" style="background:#ebffef">&#9986;</div>
+        <div><div class="agent-name">IRIS</div><div class="agent-role">clip-selector-agent</div></div>
+      </div>
+      <div class="agent-desc">Creative director with a ruthless eye. Reads transcripts and finds the exact 30-second moment with the strongest emotional arc and hook. Rejects more than it selects.</div>
+      <div class="agent-stat"><span class="stat-key">Clips selected</span><span class="stat-val">847</span></div>
+      <div class="agent-stat"><span class="stat-key">Average hook score</span><span class="stat-val">91/100</span></div>
+      <div class="agent-stat"><span class="stat-key">Watch time improvement</span><span class="stat-val">+34%</span></div>
+      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-avatar" style="background:#fff8eb">&#127916;</div>
+        <div><div class="agent-name">FORGE</div><div class="agent-role">video-editor-agent</div></div>
+      </div>
+      <div class="agent-desc">Silent craftsman. Takes raw horizontal video and returns a TikTok-native 9:16 vertical clip with burned captions, hook overlay, and normalized audio. Done in under 5 minutes.</div>
+      <div class="agent-stat"><span class="stat-key">Clips rendered</span><span class="stat-val">312</span></div>
+      <div class="agent-stat"><span class="stat-key">Average file size</span><span class="stat-val">6.2 MB</span></div>
+      <div class="agent-stat"><span class="stat-key">Caption accuracy</span><span class="stat-val">97%</span></div>
+      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-avatar" style="background:#ffebed">&#128221;</div>
+        <div><div class="agent-name">ECHO</div><div class="agent-role">blog-agent</div></div>
+      </div>
+      <div class="agent-desc">Prolific SEO writer. Turns every video transcript into a 1000-word blog post within 30 minutes. Targets long-tail keywords with real search intent and continuously rewrites underperforming titles.</div>
+      <div class="agent-stat"><span class="stat-key">Posts published</span><span class="stat-val">24</span></div>
+      <div class="agent-stat"><span class="stat-key">Average position</span><span class="stat-val">Page 8</span></div>
+      <div class="agent-stat"><span class="stat-key">Click-through rate</span><span class="stat-val">3.2%</span></div>
+      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
+    </div>
+    <div class="agent-card">
+      <div class="agent-header">
+        <div class="agent-avatar" style="background:#f0f0f0">&#128242;</div>
+        <div><div class="agent-name">HERMES</div><div class="agent-role">publishing-agent</div></div>
+      </div>
+      <div class="agent-desc">Timing strategist. Has 47 clips queued and ready. Will post at the optimal moment for the target audience once TikTok API approval is granted. Tracks 5 performance metrics per post.</div>
+      <div class="agent-stat"><span class="stat-key">Clips queued</span><span class="stat-val">47</span></div>
+      <div class="agent-stat"><span class="stat-key">Optimal posting time</span><span class="stat-val">7 PM CET</span></div>
+      <div class="agent-stat"><span class="stat-key">API status</span><span class="stat-val">Pending</span></div>
+      <div class="status-badge badge-pending"><div class="status-dot dot-pending"></div>awaiting API approval</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-block"><div class="stat-big">1,247</div><div class="stat-desc">Compliance checks run</div></div>
+    <div class="stat-block"><div class="stat-big">312</div><div class="stat-desc">Videos produced</div></div>
+    <div class="stat-block"><div class="stat-big">24</div><div class="stat-desc">Blog posts published</div></div>
+    <div class="stat-block"><div class="stat-big">100%</div><div class="stat-desc">Copyright compliance</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="section" id="features">
+  <div class="section-tag">How it works</div>
+  <div class="section-title">From trending video to<br><em>published content</em> in minutes.</div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-num">01</div>
+      <div class="feature-title">Compliance first</div>
+      <div class="feature-desc">Every video passes through four automated checks before processing begins. License verification, channel trust, content policy, and AI legal risk assessment. Zero copyright violations.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">02</div>
+      <div class="feature-title">Trend detection</div>
+      <div class="feature-desc">Real-time monitoring of 47 keywords across 3 niches. Videos scored by view velocity, engagement rate, and trending momentum. Only the top 10 make it through each day.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">03</div>
+      <div class="feature-title">AI clip selection</div>
+      <div class="feature-desc">Anthropic Claude reads full video transcripts and identifies the 3 best clips based on hook strength, emotional arc, pacing, and predicted completion rate.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">04</div>
+      <div class="feature-title">Automated editing</div>
+      <div class="feature-desc">FFmpeg converts each clip to 9:16 vertical format using split-blur background fill. OpenAI Whisper generates word-level captions burned directly into the video.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">05</div>
+      <div class="feature-title">TikTok publishing</div>
+      <div class="feature-desc">Official TikTok Content Posting API. Every clip published with AI-generated captions and hashtags at the optimal time for the target audience. Full compliance with platform policies.</div>
+    </div>
+    <div class="feature-card">
+      <div class="feature-num">06</div>
+      <div class="feature-title">Blog monetization</div>
+      <div class="feature-desc">Every video transcript becomes a 1000-word SEO article published to WordPress within 30 minutes. AdSense ads placed strategically. Traffic compounds over time.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="cta-section" id="contact">
+  <div class="section-tag">Get in touch</div>
+  <div class="cta-title">Built for<br><em>scale.</em></div>
+  <div class="cta-desc">AI Content System runs autonomously every day at 9 AM. No manual intervention required. Every agent learns from performance data and improves its own decision weights weekly.</div>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a href="mailto:contact@aicontentsystem.org" class="btn-primary">Contact us</a>
+    <a href="/terms.html" class="btn-outline">Terms of Service</a>
+    <a href="/privacy.html" class="btn-outline">Privacy Policy</a>
+  </div>
+</div>
+
+<footer>
+  <p>&copy; 2026 AI Content System. All rights reserved. Operated from France.</p>
+  <p style="margin-top:10px">
+    <a href="/terms.html">Terms of Service</a>
+    <a href="/privacy.html">Privacy Policy</a>
+    <a href="mailto:contact@aicontentsystem.org">Contact</a>
+  </p>
+</footer>
+</body>
+</html>

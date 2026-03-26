@@ -1,281 +1,839 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEET AI Société — Autonomous AI Business Systems</title>
+<meta name="description" content="AI-powered autonomous business: algorithmic trading, content automation, accounting and tax compliance. Based in France.">
 <meta name="google-adsense-account" content="ca-pub-5033783482062814">
-<meta name="tiktok-domain-verification" content="RSUrYZUwXt2dblWZjDi4Z2eHDheDHSbd">
-<title>AI Content System - Automated Content Creation Platform</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#0d0d0f;--paper:#f5f3ee;--cream:#ede9e1;--mid:#c8c4bc;--ghost:#8a877f;--accent:#e8410a;--green:#0a8a4a;--amber:#c47a00;--blue:#1a6aff}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
-nav{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--mid);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:56px}
-.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.5px}
-.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:6px}
-.nav-link{padding:6px 12px;border-radius:6px;font-size:13px;font-weight:500;color:var(--ghost);cursor:pointer;border:none;background:none;transition:all 0.15s;font-family:'DM Sans',sans-serif}
-.nav-link:hover{background:var(--cream);color:var(--ink)}
-.hero{padding:100px 40px 80px;max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.hero-label{display:inline-flex;align-items:center;gap:8px;background:var(--cream);border:1px solid var(--mid);border-radius:100px;padding:4px 14px;font-size:12px;font-weight:500;color:var(--ghost);margin-bottom:24px;font-family:'DM Mono',monospace}
-.hero-label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green)}
-.hero h1{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(36px,5vw,58px);line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero p{font-size:17px;color:var(--ghost);line-height:1.7;max-width:420px;margin-bottom:32px}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
-.btn-primary{background:var(--ink);color:var(--paper);border:none;border-radius:8px;padding:12px 24px;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block}
-.btn-primary:hover{background:var(--accent);transform:translateY(-1px)}
-.btn-outline{background:none;color:var(--ink);border:1px solid var(--mid);border-radius:8px;padding:12px 24px;font-size:14px;font-weight:500;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;text-decoration:none;display:inline-block}
-.btn-outline:hover{border-color:var(--ink)}
-.hero-visual{background:var(--cream);border:1px solid var(--mid);border-radius:20px;padding:24px}
-.pipeline-mini{display:flex;flex-direction:column;gap:8px}
-.pipe-step{display:flex;align-items:center;gap:12px;background:var(--paper);border:1px solid var(--mid);border-radius:10px;padding:10px 14px;animation:slideIn 0.4s ease both}
-.pipe-step:nth-child(1){animation-delay:0.1s}
-.pipe-step:nth-child(2){animation-delay:0.2s}
-.pipe-step:nth-child(3){animation-delay:0.3s}
-.pipe-step:nth-child(4){animation-delay:0.4s}
-.pipe-step:nth-child(5){animation-delay:0.5s}
-@keyframes slideIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:translateX(0)}}
-.pipe-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.pipe-name{font-size:13px;font-weight:500}
-.pipe-sub{font-size:11px;color:var(--ghost);font-family:'DM Mono',monospace}
-.pipe-score{margin-left:auto;font-family:'DM Mono',monospace;font-size:12px;font-weight:500}
-.section{padding:80px 40px;max-width:1100px;margin:0 auto}
-.section-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;color:var(--ghost);border:1px solid var(--mid);border-radius:4px;padding:3px 8px;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.5px}
-.section-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,4vw,42px);letter-spacing:-1.5px;line-height:1.1;margin-bottom:48px}
-.section-title em{font-style:normal;color:var(--accent)}
-.agents-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-.agent-card{background:var(--paper);border:1px solid var(--mid);border-radius:20px;padding:24px;transition:all 0.2s}
-.agent-card:hover{border-color:var(--ink);transform:translateY(-2px)}
-.agent-header{display:flex;align-items:center;gap:14px;margin-bottom:16px}
-.agent-avatar{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;border:1px solid var(--mid)}
-.agent-name{font-family:'Syne',sans-serif;font-weight:700;font-size:16px}
-.agent-role{font-size:12px;color:var(--ghost);font-family:'DM Mono',monospace}
-.agent-desc{font-size:13px;color:var(--ghost);line-height:1.6;margin-bottom:14px}
-.agent-stat{display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid var(--cream);font-size:12px}
-.stat-key{color:var(--ghost)}
-.stat-val{font-family:'DM Mono',monospace;font-weight:500}
-.status-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:3px 8px;border-radius:100px;margin-top:12px}
-.badge-active{background:#e8f5e9;color:var(--green)}
-.badge-pending{background:#fff8e1;color:var(--amber)}
-.status-dot{width:6px;height:6px;border-radius:50%}
-.dot-active{background:var(--green);animation:blink 2s infinite}
-.dot-pending{background:var(--amber)}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.4}}
-.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:48px}
-.feature-card{background:var(--cream);border:1px solid var(--mid);border-radius:16px;padding:20px}
-.feature-num{font-family:'DM Mono',monospace;font-size:11px;color:var(--ghost);margin-bottom:8px}
-.feature-title{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;margin-bottom:8px}
-.feature-desc{font-size:13px;color:var(--ghost);line-height:1.6}
-.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;background:var(--ink);border-radius:20px;padding:40px;margin-top:48px}
-.stat-block{text-align:center}
-.stat-big{font-family:'Syne',sans-serif;font-weight:800;font-size:36px;color:var(--paper);letter-spacing:-1px}
-.stat-desc{font-size:13px;color:var(--ghost);margin-top:4px}
-.divider{height:1px;background:var(--mid);max-width:1100px;margin:0 auto}
-.cta-section{padding:80px 40px;text-align:center;max-width:700px;margin:0 auto}
-.cta-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(28px,4vw,48px);letter-spacing:-1.5px;margin-bottom:16px}
-.cta-title em{font-style:normal;color:var(--accent)}
-.cta-desc{font-size:16px;color:var(--ghost);margin-bottom:32px;line-height:1.7}
-footer{padding:40px;text-align:center;color:var(--ghost);font-size:13px;border-top:1px solid var(--mid)}
-footer a{color:var(--ghost);text-decoration:none;margin:0 12px}
-footer a:hover{color:var(--ink)}
-@media(max-width:768px){.hero{grid-template-columns:1fr;padding:60px 20px 40px}.section{padding:60px 20px}nav{padding:0 20px}.stats-row{grid-template-columns:repeat(2,1fr)}}
+:root {
+  --bg-deep: #07080a;
+  --bg-surface: #0d0f13;
+  --bg-card: #12151b;
+  --bg-hover: #1a1e27;
+  --accent: #00e5a0;
+  --accent-dim: #00e5a020;
+  --accent-mid: #00e5a060;
+  --danger: #ff4757;
+  --warning: #ffa502;
+  --info: #3b82f6;
+  --text-1: #e8eaed;
+  --text-2: #9ca3af;
+  --text-3: #5a6170;
+  --border: #1e2330;
+  --mono: 'JetBrains Mono', monospace;
+  --sans: 'Outfit', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-1);
+  font-family: var(--sans);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Grain overlay */
+body::before {
+  content: '';
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 9999;
+}
+
+/* Grid background */
+.grid-bg {
+  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+  background-image:
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+/* Glow orb */
+.glow-orb {
+  position: fixed;
+  width: 600px; height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-dim), transparent 70%);
+  top: -200px; right: -200px;
+  pointer-events: none;
+  animation: drift 20s ease-in-out infinite alternate;
+}
+@keyframes drift { to { transform: translate(-100px, 80px); } }
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+/* NAV */
+nav {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+  background: var(--bg-deep);
+  z-index: 100;
+  backdrop-filter: blur(20px);
+  background: rgba(7,8,10,0.85);
+}
+nav .inner { display: flex; align-items: center; justify-content: space-between; }
+.logo {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: -0.5px;
+}
+.logo span { color: var(--accent); }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+.nav-status {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; color: var(--accent);
+}
+.pulse {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-mid); } 50% { opacity: 0.7; box-shadow: 0 0 0 8px transparent; } }
+
+/* HERO */
+.hero {
+  padding: 100px 0 80px;
+  text-align: center;
+}
+.hero-tag {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  display: inline-block;
+  border: 1px solid var(--accent-mid);
+  padding: 6px 16px;
+  border-radius: 100px;
+}
+.hero h1 {
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(135deg, var(--accent), #00b4d8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  color: var(--text-2);
+  font-size: 18px;
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+}
+
+/* LIVE STATS */
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 100px;
+}
+.stat {
+  background: var(--bg-card);
+  padding: 28px 24px;
+  text-align: center;
+  transition: background 0.2s;
+}
+.stat:hover { background: var(--bg-hover); }
+.stat-value {
+  font-family: var(--mono);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-1);
+  margin-bottom: 4px;
+}
+.stat-value.green { color: var(--accent); }
+.stat-label {
+  font-size: 12px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* SECTIONS */
+section { margin-bottom: 100px; }
+.section-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: -1px;
+}
+.section-desc {
+  color: var(--text-2);
+  font-size: 16px;
+  max-width: 600px;
+  line-height: 1.6;
+  margin-bottom: 48px;
+}
+
+/* BOT CARDS */
+.bot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.bot-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.bot-card:hover {
+  border-color: var(--accent-mid);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,229,160,0.06);
+}
+.bot-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.bot-card:hover::before { opacity: 1; }
+.bot-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.bot-name-group { display: flex; align-items: center; gap: 12px; }
+.bot-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 13px;
+}
+.bot-codename { font-family: var(--mono); font-size: 14px; font-weight: 600; }
+.bot-role { font-size: 13px; color: var(--text-2); }
+.badge {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 100px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.badge-live { background: rgba(0,229,160,0.12); color: var(--accent); }
+.badge-pending { background: rgba(255,165,2,0.12); color: var(--warning); }
+.badge-dev { background: rgba(59,130,246,0.12); color: var(--info); }
+.bot-desc {
+  color: var(--text-2);
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.bot-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.tech-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--bg-deep);
+  color: var(--text-3);
+  border: 1px solid var(--border);
+}
+
+/* ARCHITECTURE */
+.arch-flow {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+.arch-node {
+  flex: 0 0 auto;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  min-width: 160px;
+  text-align: center;
+  position: relative;
+}
+.arch-node::after {
+  content: '';
+  position: absolute;
+  right: -24px; top: 50%;
+  width: 24px; height: 2px;
+  background: var(--accent);
+}
+.arch-node:last-child::after { display: none; }
+.arch-node .node-title { font-family: var(--mono); font-size: 12px; font-weight: 600; margin-bottom: 4px; }
+.arch-node .node-sub { font-size: 11px; color: var(--text-3); }
+
+/* REVENUE TABLE */
+.rev-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.rev-table th, .rev-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 14px;
+}
+.rev-table th {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+}
+.rev-table td { color: var(--text-2); }
+.rev-table .amount { font-family: var(--mono); color: var(--accent); font-weight: 500; }
+.rev-table tr:hover td { color: var(--text-1); }
+.rev-bar-container { width: 100%; height: 6px; background: var(--bg-deep); border-radius: 3px; overflow: hidden; }
+.rev-bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+
+/* LEGAL TIMELINE */
+.timeline { position: relative; padding-left: 32px; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px; top: 0;
+  width: 1px; height: 100%;
+  background: var(--border);
+}
+.tl-item { margin-bottom: 32px; position: relative; }
+.tl-dot {
+  position: absolute;
+  left: -32px; top: 4px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  border: 2px solid var(--accent);
+  background: var(--bg-deep);
+}
+.tl-item.done .tl-dot { background: var(--accent); }
+.tl-title { font-weight: 500; font-size: 15px; margin-bottom: 4px; }
+.tl-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.tl-tag {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-top: 8px;
+}
+.tl-tag.required { background: rgba(255,71,87,0.12); color: var(--danger); }
+.tl-tag.optional { background: rgba(59,130,246,0.12); color: var(--info); }
+
+/* TAX CALENDAR */
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.cal-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: border-color 0.2s;
+}
+.cal-item:hover { border-color: var(--accent-mid); }
+.cal-month {
+  font-family: var(--mono);
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+.cal-name { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
+.cal-form { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+  text-align: center;
+}
+footer p { font-size: 13px; color: var(--text-3); }
+footer a { color: var(--accent); text-decoration: none; }
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .bot-grid { grid-template-columns: 1fr; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .hero h1 { font-size: 32px; letter-spacing: -1px; }
+}
+
+/* ANIMATIONS */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 <body>
+
+<div class="grid-bg"></div>
+<div class="glow-orb"></div>
+
 <nav>
-  <div class="logo">AI<span>.</span>Content</div>
-  <div class="nav-links">
-    <button class="nav-link" onclick="document.getElementById('agents').scrollIntoView({behavior:'smooth'})">Agents</button>
-    <button class="nav-link" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">Features</button>
-    <button class="nav-link" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</button>
+  <div class="container inner">
+    <div class="logo">NEET<span>.</span>AI</div>
+    <div class="nav-links">
+      <a href="#bots">Bots</a>
+      <a href="#revenue">Revenue</a>
+      <a href="#legal">Legal</a>
+      <a href="#tax">Fiscalité</a>
+      <a href="terms.html">Mentions légales</a>
+      <a href="privacy.html">Confidentialité</a>
+    </div>
+    <div class="nav-status"><div class="pulse"></div> Systems online</div>
   </div>
 </nav>
 
-<div class="hero">
-  <div>
-    <div class="hero-label">System status: all agents online</div>
-    <h1>Six AI agents.<br><em>One revenue machine.</em></h1>
-    <p>An autonomous pipeline that finds, edits, and publishes viral short-form content while every agent learns from its mistakes to maximize profit.</p>
-    <div class="hero-btns">
-      <a href="#agents" class="btn-primary">Meet the agents</a>
-      <a href="/terms.html" class="btn-outline">Terms of Service</a>
+<div class="container">
+
+  <!-- HERO -->
+  <section class="hero fade-up">
+    <div class="hero-tag">SASU · France · AI-Powered</div>
+    <h1>Autonomous AI<br><em>Business Engine</em></h1>
+    <p>9 specialized bots generating revenue through algorithmic trading, content creation, and digital publishing — fully automated, fully compliant with French law.</p>
+  </section>
+
+  <!-- LIVE STATS -->
+  <div class="stats-bar fade-up" id="stats">
+    <div class="stat">
+      <div class="stat-value green" id="s-bots">9</div>
+      <div class="stat-label">Bot Fleet</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="s-streams">4</div>
+      <div class="stat-label">Revenue Streams</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value green" id="s-uptime">99.7%</div>
+      <div class="stat-label">Uptime</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="s-posts">24+</div>
+      <div class="stat-label">Blog Posts</div>
+    </div>
+    <div class="stat">
+      <div class="stat-value" id="s-trades">24/7</div>
+      <div class="stat-label">Trading Active</div>
     </div>
   </div>
-  <div class="hero-visual">
-    <div class="pipeline-mini">
-      <div class="pipe-step">
-        <div class="pipe-icon" style="background:#fff0eb">&#128737;</div>
-        <div><div class="pipe-name">NEXUS &mdash; Compliance</div><div class="pipe-sub">score: 100/100 &middot; approved</div></div>
-        <div class="pipe-score" style="color:#0a8a4a">&#10003;</div>
+
+  <!-- BOT FLEET -->
+  <section id="bots">
+    <div class="section-label fade-up">// Bot Fleet</div>
+    <h2 class="section-title fade-up">9 autonomous agents</h2>
+    <p class="section-desc fade-up">Each bot specializes in one task, communicating through a unified Telegram command center and shared database.</p>
+
+    <div class="bot-grid">
+      <div class="bot-card fade-up">
+        <div class="bot-header">
+          <div class="bot-name-group">
+            <div class="bot-icon" style="background:rgba(255,71,87,0.12);color:var(--danger);">AT</div>
+            <div><div class="bot-codename">ATLAS</div><div class="bot-role">XRP Futures Scalper</div></div>
+          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <p class="bot-desc">1-second analysis engine via Binance WebSocket. Trades XRP/USDT perpetual futures on KuCoin with 10x leverage. Kelly Criterion position sizing, whale detection, liquidity mapping.</p>
+        <div class="bot-tech">
+          <span class="tech-tag">WebSocket</span>
+          <span class="tech-tag">KuCoin API</span>
+          <span class="tech-tag">XRPL</span>
+          <span class="tech-tag">Kelly</span>
+          <span class="tech-tag">SQLite</span>
+        </div>
       </div>
-      <div class="pipe-step">
-        <div class="pipe-icon" style="background:#ebf0ff">&#128202;</div>
-        <div><div class="pipe-name">SCOUT &mdash; Trend detection</div><div class="pipe-sub">found 10 CC videos</div></div>
-        <div class="pipe-score" style="color:#1a6aff">&#8593;</div>
+
+      <div class="bot-card fade-up">
+        <div class="bot-header">
+          <div class="bot-name-group">
+            <div class="bot-icon" style="background:rgba(59,130,246,0.12);color:var(--info);">SC</div>
+            <div><div class="bot-codename">SCOUT</div><div class="bot-role">Trend Finder</div></div>
+          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <p class="bot-desc">Discovers trending Creative Commons videos on YouTube by niche and day. AI-powered ranking with Claude to select the most viral-worthy content for repurposing.</p>
+        <div class="bot-tech">
+          <span class="tech-tag">YouTube API v3</span>
+          <span class="tech-tag">Claude AI</span>
+          <span class="tech-tag">CC License</span>
+        </div>
       </div>
-      <div class="pipe-step">
-        <div class="pipe-icon" style="background:#ebffef">&#9986;</div>
-        <div><div class="pipe-name">IRIS &mdash; Clip selector</div><div class="pipe-sub">hook score: 94/100</div></div>
-        <div class="pipe-score" style="color:#0a8a4a">&#10003;</div>
+
+      <div class="bot-card fade-up">
+        <div class="bot-header">
+          <div class="bot-name-group">
+            <div class="bot-icon" style="background:rgba(0,229,160,0.12);color:var(--accent);">NX</div>
+            <div><div class="bot-codename">NEXUS</div><div class="bot-role">Compliance Agent</div></div>
+          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <p class="bot-desc">4-layer compliance checker: YouTube license verification, channel reputation, content policy flags, and Claude-powered legal risk assessment. Scores 0-100.</p>
+        <div class="bot-tech">
+          <span class="tech-tag">Copyright Check</span>
+          <span class="tech-tag">AI Risk Score</span>
+          <span class="tech-tag">CC Validator</span>
+        </div>
       </div>
-      <div class="pipe-step">
-        <div class="pipe-icon" style="background:#fff8eb">&#127916;</div>
-        <div><div class="pipe-name">FORGE &mdash; Video editor</div><div class="pipe-sub">9:16 &middot; captions burned</div></div>
-        <div class="pipe-score" style="color:#c47a00">6.8MB</div>
+
+      <div class="bot-card fade-up">
+        <div class="bot-header">
+          <div class="bot-name-group">
+            <div class="bot-icon" style="background:rgba(139,92,246,0.12);color:#8b5cf6;">IR</div>
+            <div><div class="bot-codename">IRIS</div><div class="bot-role">Clip Selector</div></div>
+          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <p class="bot-desc">Claude-powered clip selection engine. Analyzes transcripts to find the most viral 20-55 second segments with hooks, emotional arcs, and natural conclusions.</p>
+        <div class="bot-tech">
+          <span class="tech-tag">Claude Sonnet</span>
+          <span class="tech-tag">Whisper</span>
+          <span class="tech-tag">NLP</span>
+        </div>
       </div>
-      <div class="pipe-step">
-        <div class="pipe-icon" style="background:#ffebed">&#128221;</div>
-        <div><div class="pipe-name">ECHO &mdash; Blog agent</div><div class="pipe-sub">SEO post published</div></div>
-        <div class="pipe-score" style="color:#0a8a4a">&#8593;</div>
+
+      <div class="bot-card fade-up">
+        <div class="bot-header">
+          <div class="bot-name-group">
+            <div class="bot-icon" style="background:rgba(255,165,2,0.12);color:var(--warning);">FG</div>
+            <div><div class="bot-codename">FORGE</div><div class="bot-role">Video Editor</div></div>
+          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <p class="bot-desc">Automated FFmpeg pipeline: extracts clips, converts to 9:16 vertical (1080x1920), burns French subtitles at bottom, adds color-coded hook overlays.</p>
+        <div class="bot-tech">
+          <span class="tech-tag">FFmpeg</span>
+          <span class="tech-tag">H.264</span>
+          <span class="tech-tag">9:16</span>
+          <span class="tech-tag">SRT</span>
+        </div>
+      </div>
+
+      <div class="bot-card fade-up">
+        <div class="bot-header">
+          <div class="bot-name-group">
+            <div class="bot-icon" style="background:rgba(0,229,160,0.12);color:var(--accent);">HM</div>
+            <div><div class="bot-codename">HERMES</div><div class="bot-role">Publisher</div></div>
+          </div>
+          <span class="badge badge-pending">Pending API</span>
+        </div>
+        <p class="bot-desc">Manages TikTok Content Posting API uploads and YouTube Shorts cross-posting. Queue system for videos while awaiting API approval.</p>
+        <div class="bot-tech">
+          <span class="tech-tag">TikTok API</span>
+          <span class="tech-tag">YouTube API</span>
+          <span class="tech-tag">Queue</span>
+        </div>
+      </div>
+
+      <div class="bot-card fade-up">
+        <div class="bot-header">
+          <div class="bot-name-group">
+            <div class="bot-icon" style="background:rgba(59,130,246,0.12);color:var(--info);">EC</div>
+            <div><div class="bot-codename">ECHO</div><div class="bot-role">Blog Writer</div></div>
+          </div>
+          <span class="badge badge-live">Live</span>
+        </div>
+        <p class="bot-desc">Generates 1000-word SEO blog posts from video transcripts using Claude. Auto-publishes to WordPress with AdSense integration and affiliate links.</p>
+        <div class="bot-tech">
+          <span class="tech-tag">Claude AI</span>
+          <span class="tech-tag">WordPress</span>
+          <span class="tech-tag">SEO</span>
+          <span class="tech-tag">AdSense</span>
+        </div>
+      </div>
+
+      <div class="bot-card fade-up">
+        <div class="bot-header">
+          <div class="bot-name-group">
+            <div class="bot-icon" style="background:rgba(255,165,2,0.12);color:var(--warning);">LG</div>
+            <div><div class="bot-codename">LEDGER</div><div class="bot-role">Accounting Bot</div></div>
+          </div>
+          <span class="badge badge-dev">In dev</span>
+        </div>
+        <p class="bot-desc">Automated accounting for French SASU. Tracks revenue/expenses across all bots, generates invoices, livre des recettes, and monthly P&L reports.</p>
+        <div class="bot-tech">
+          <span class="tech-tag">SQLite</span>
+          <span class="tech-tag">PDF Gen</span>
+          <span class="tech-tag">SASU</span>
+          <span class="tech-tag">EUR</span>
+        </div>
+      </div>
+
+      <div class="bot-card fade-up">
+        <div class="bot-header">
+          <div class="bot-name-group">
+            <div class="bot-icon" style="background:rgba(255,71,87,0.12);color:var(--danger);">FI</div>
+            <div><div class="bot-codename">FISC</div><div class="bot-role">Tax Compliance</div></div>
+          </div>
+          <span class="badge badge-dev">In dev</span>
+        </div>
+        <p class="bot-desc">French tax obligation tracker. Monitors IS, TVA, CFE deadlines. Auto-generates Cerfa form data. Manages foreign account declarations (3916-bis).</p>
+        <div class="bot-tech">
+          <span class="tech-tag">IS 15%/25%</span>
+          <span class="tech-tag">TVA</span>
+          <span class="tech-tag">CFE</span>
+          <span class="tech-tag">Cerfa</span>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- REVENUE -->
+  <section id="revenue">
+    <div class="section-label fade-up">// Revenue Model</div>
+    <h2 class="section-title fade-up">4 revenue streams</h2>
+    <p class="section-desc fade-up">Diversified income from trading profits, content monetization, advertising, and affiliate partnerships.</p>
+
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;" class="fade-up">
+      <table class="rev-table">
+        <thead>
+          <tr>
+            <th>Stream</th>
+            <th>Source</th>
+            <th>Month 1-2</th>
+            <th>Month 3-4</th>
+            <th>Month 5+</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="color:var(--text-1);font-weight:500;">XRP Trading</td>
+            <td>KuCoin Futures (ATLAS)</td>
+            <td class="amount">0–100€</td>
+            <td class="amount">100–400€</td>
+            <td class="amount">200–800€</td>
+            <td><span class="badge badge-live">Live</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-1);font-weight:500;">TikTok</td>
+            <td>Creator Fund (HERMES)</td>
+            <td class="amount">0€</td>
+            <td class="amount">20–80€</td>
+            <td class="amount">80–300€</td>
+            <td><span class="badge badge-pending">Pending</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-1);font-weight:500;">AdSense</td>
+            <td>Blog + Website (ECHO)</td>
+            <td class="amount">0–10€</td>
+            <td class="amount">10–50€</td>
+            <td class="amount">50–200€</td>
+            <td><span class="badge badge-pending">Review</span></td>
+          </tr>
+          <tr>
+            <td style="color:var(--text-1);font-weight:500;">Affiliates</td>
+            <td>Blog CTAs (ECHO)</td>
+            <td class="amount">0€</td>
+            <td class="amount">0–20€</td>
+            <td class="amount">100–500€</td>
+            <td><span class="badge badge-dev">Planned</span></td>
+          </tr>
+          <tr style="border-top:2px solid var(--accent-dim);">
+            <td style="color:var(--accent);font-weight:600;">Total</td>
+            <td></td>
+            <td class="amount" style="color:var(--accent)">0–110€</td>
+            <td class="amount" style="color:var(--accent)">130–550€</td>
+            <td class="amount" style="color:var(--accent)">430–1,800€</td>
+            <td></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- LEGAL -->
+  <section id="legal">
+    <div class="section-label fade-up">// Structure Juridique</div>
+    <h2 class="section-title fade-up">SASU — France</h2>
+    <p class="section-desc fade-up">Société par Actions Simplifiée Unipersonnelle. Responsabilité limitée, fiscalité IS, flexibilité maximale.</p>
+
+    <div class="timeline fade-up">
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-title">Rédaction des statuts</div>
+        <div class="tl-desc">Dénomination, objet social (IA, trading algorithmique, contenu numérique), capital 1-500€, nomination du Président.</div>
+        <span class="tl-tag required">Obligatoire</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-title">Dépôt de capital</div>
+        <div class="tl-desc">Ouverture d'un compte de dépôt (Qonto, Shine, BoursoBank Pro). Obtention de l'attestation de dépôt des fonds.</div>
+        <span class="tl-tag required">Obligatoire</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-title">Publication annonce légale</div>
+        <div class="tl-desc">Journal d'annonces légales (JAL). Coût: ~180€. Mention de la création de la SASU.</div>
+        <span class="tl-tag required">Obligatoire — ~180€</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-title">Immatriculation Guichet Unique</div>
+        <div class="tl-desc">formalites.entreprises.gouv.fr — Statuts, attestation dépôt, pièce d'identité, déclaration non-condamnation. Coût greffe: ~40€.</div>
+        <span class="tl-tag required">Obligatoire — ~40€</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-title">Obtention SIRET/SIREN</div>
+        <div class="tl-desc">Attribution automatique par INSEE sous 1-2 semaines. Réception du K-bis.</div>
+        <span class="tl-tag required">Automatique</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-title">Déclaration comptes étrangers</div>
+        <div class="tl-desc">Formulaire 3916-bis pour KuCoin (Seychelles) et Google AdSense (Irlande). Obligatoire chaque année.</div>
+        <span class="tl-tag required">Obligatoire</span>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot"></div>
+        <div class="tl-title">Déclaration ACPR/AMF (crypto)</div>
+        <div class="tl-desc">Vérifier si le trading algorithmique nécessite un enregistrement PSAN auprès de l'AMF.</div>
+        <span class="tl-tag optional">À vérifier</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAX CALENDAR -->
+  <section id="tax">
+    <div class="section-label fade-up">// Calendrier Fiscal</div>
+    <h2 class="section-title fade-up">Obligations fiscales</h2>
+    <p class="section-desc fade-up">IS à 15% sur les premiers 42 500€ de bénéfice (25% au-delà). TVA en franchise de base si CA &lt; 36 800€/an.</p>
+
+    <div class="cal-grid fade-up">
+      <div class="cal-item">
+        <div class="cal-month">JAN</div>
+        <div><div class="cal-name">Acompte IS T4 (solde)</div><div class="cal-form">Formulaire 3514</div></div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-month">FÉV</div>
+        <div><div class="cal-name">Déclaration DAS2</div><div class="cal-form">Honoraires versés</div></div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-month">MAR</div>
+        <div><div class="cal-name">Acompte IS T1</div><div class="cal-form">Formulaire 3514</div></div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-month">AVR</div>
+        <div><div class="cal-name">Déclaration revenus</div><div class="cal-form">Formulaire 2042 + 2042-C-PRO</div></div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-month">MAI</div>
+        <div><div class="cal-name">Liasse fiscale IS</div><div class="cal-form">Formulaire 2065 + annexes 2033</div></div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-month">MAI</div>
+        <div><div class="cal-name">Comptes étrangers</div><div class="cal-form">Formulaire 3916-bis</div></div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-month">JUN</div>
+        <div><div class="cal-name">Acompte IS T2</div><div class="cal-form">Formulaire 3514</div></div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-month">SEP</div>
+        <div><div class="cal-name">Acompte IS T3</div><div class="cal-form">Formulaire 3514</div></div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-month">DÉC</div>
+        <div><div class="cal-name">CFE</div><div class="cal-form">Cotisation foncière des entreprises</div></div>
+      </div>
+      <div class="cal-item">
+        <div class="cal-month" style="background:rgba(255,71,87,0.12);color:var(--danger);">MENS</div>
+        <div><div class="cal-name">Livre des recettes</div><div class="cal-form">Mise à jour obligatoire</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p style="margin-bottom:8px;">NEET AI Société — SASU en cours d'immatriculation — France</p>
+    <p><a href="terms.html">Mentions légales</a> · <a href="privacy.html">Politique de confidentialité</a> · <a href="mailto:contact@aicontentsystem.org">Contact</a></p>
+    <p style="margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--text-3);">Powered by 9 autonomous AI agents · Built with Claude</p>
+  </footer>
+
 </div>
 
-<div class="divider"></div>
+<script>
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-<div class="section" id="agents">
-  <div class="section-tag">The team</div>
-  <div class="section-title">Six agents with <em>personality.</em></div>
-  <div class="agents-grid">
-    <div class="agent-card">
-      <div class="agent-header">
-        <div class="agent-avatar" style="background:#fff0eb">&#128737;</div>
-        <div><div class="agent-name">NEXUS</div><div class="agent-role">compliance-agent</div></div>
-      </div>
-      <div class="agent-desc">Paranoid perfectionist. Checks every video for Creative Commons licensing, channel trust, content policy, and AI legal risk before anything is processed. Score below 80 is a hard reject.</div>
-      <div class="agent-stat"><span class="stat-key">Checks run this month</span><span class="stat-val">1,247</span></div>
-      <div class="agent-stat"><span class="stat-key">Blocked rate</span><span class="stat-val">89%</span></div>
-      <div class="agent-stat"><span class="stat-key">Average compliance score</span><span class="stat-val">100/100</span></div>
-      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
-    </div>
-    <div class="agent-card">
-      <div class="agent-header">
-        <div class="agent-avatar" style="background:#ebf0ff">&#128202;</div>
-        <div><div class="agent-name">SCOUT</div><div class="agent-role">trend-detection-agent</div></div>
-      </div>
-      <div class="agent-desc">Obsessive data hunter. Tracks 3 niches and 47 keywords simultaneously. Scores videos by view velocity and engagement rate to find the wave before it breaks.</div>
-      <div class="agent-stat"><span class="stat-key">Videos found per day</span><span class="stat-val">10</span></div>
-      <div class="agent-stat"><span class="stat-key">View velocity tracked</span><span class="stat-val">847/hr</span></div>
-      <div class="agent-stat"><span class="stat-key">Prediction accuracy</span><span class="stat-val">78%</span></div>
-      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
-    </div>
-    <div class="agent-card">
-      <div class="agent-header">
-        <div class="agent-avatar" style="background:#ebffef">&#9986;</div>
-        <div><div class="agent-name">IRIS</div><div class="agent-role">clip-selector-agent</div></div>
-      </div>
-      <div class="agent-desc">Creative director with a ruthless eye. Reads transcripts and finds the exact 30-second moment with the strongest emotional arc and hook. Rejects more than it selects.</div>
-      <div class="agent-stat"><span class="stat-key">Clips selected</span><span class="stat-val">847</span></div>
-      <div class="agent-stat"><span class="stat-key">Average hook score</span><span class="stat-val">91/100</span></div>
-      <div class="agent-stat"><span class="stat-key">Watch time improvement</span><span class="stat-val">+34%</span></div>
-      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
-    </div>
-    <div class="agent-card">
-      <div class="agent-header">
-        <div class="agent-avatar" style="background:#fff8eb">&#127916;</div>
-        <div><div class="agent-name">FORGE</div><div class="agent-role">video-editor-agent</div></div>
-      </div>
-      <div class="agent-desc">Silent craftsman. Takes raw horizontal video and returns a TikTok-native 9:16 vertical clip with burned captions, hook overlay, and normalized audio. Done in under 5 minutes.</div>
-      <div class="agent-stat"><span class="stat-key">Clips rendered</span><span class="stat-val">312</span></div>
-      <div class="agent-stat"><span class="stat-key">Average file size</span><span class="stat-val">6.2 MB</span></div>
-      <div class="agent-stat"><span class="stat-key">Caption accuracy</span><span class="stat-val">97%</span></div>
-      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
-    </div>
-    <div class="agent-card">
-      <div class="agent-header">
-        <div class="agent-avatar" style="background:#ffebed">&#128221;</div>
-        <div><div class="agent-name">ECHO</div><div class="agent-role">blog-agent</div></div>
-      </div>
-      <div class="agent-desc">Prolific SEO writer. Turns every video transcript into a 1000-word blog post within 30 minutes. Targets long-tail keywords with real search intent and continuously rewrites underperforming titles.</div>
-      <div class="agent-stat"><span class="stat-key">Posts published</span><span class="stat-val">24</span></div>
-      <div class="agent-stat"><span class="stat-key">Average position</span><span class="stat-val">Page 8</span></div>
-      <div class="agent-stat"><span class="stat-key">Click-through rate</span><span class="stat-val">3.2%</span></div>
-      <div class="status-badge badge-active"><div class="status-dot dot-active"></div>online</div>
-    </div>
-    <div class="agent-card">
-      <div class="agent-header">
-        <div class="agent-avatar" style="background:#f0f0f0">&#128242;</div>
-        <div><div class="agent-name">HERMES</div><div class="agent-role">publishing-agent</div></div>
-      </div>
-      <div class="agent-desc">Timing strategist. Has 47 clips queued and ready. Will post at the optimal moment for the target audience once TikTok API approval is granted. Tracks 5 performance metrics per post.</div>
-      <div class="agent-stat"><span class="stat-key">Clips queued</span><span class="stat-val">47</span></div>
-      <div class="agent-stat"><span class="stat-key">Optimal posting time</span><span class="stat-val">7 PM CET</span></div>
-      <div class="agent-stat"><span class="stat-key">API status</span><span class="stat-val">Pending</span></div>
-      <div class="status-badge badge-pending"><div class="status-dot dot-pending"></div>awaiting API approval</div>
-    </div>
-  </div>
-
-  <div class="stats-row">
-    <div class="stat-block"><div class="stat-big">1,247</div><div class="stat-desc">Compliance checks run</div></div>
-    <div class="stat-block"><div class="stat-big">312</div><div class="stat-desc">Videos produced</div></div>
-    <div class="stat-block"><div class="stat-big">24</div><div class="stat-desc">Blog posts published</div></div>
-    <div class="stat-block"><div class="stat-big">100%</div><div class="stat-desc">Copyright compliance</div></div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<div class="section" id="features">
-  <div class="section-tag">How it works</div>
-  <div class="section-title">From trending video to<br><em>published content</em> in minutes.</div>
-  <div class="features-grid">
-    <div class="feature-card">
-      <div class="feature-num">01</div>
-      <div class="feature-title">Compliance first</div>
-      <div class="feature-desc">Every video passes through four automated checks before processing begins. License verification, channel trust, content policy, and AI legal risk assessment. Zero copyright violations.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">02</div>
-      <div class="feature-title">Trend detection</div>
-      <div class="feature-desc">Real-time monitoring of 47 keywords across 3 niches. Videos scored by view velocity, engagement rate, and trending momentum. Only the top 10 make it through each day.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">03</div>
-      <div class="feature-title">AI clip selection</div>
-      <div class="feature-desc">Anthropic Claude reads full video transcripts and identifies the 3 best clips based on hook strength, emotional arc, pacing, and predicted completion rate.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">04</div>
-      <div class="feature-title">Automated editing</div>
-      <div class="feature-desc">FFmpeg converts each clip to 9:16 vertical format using split-blur background fill. OpenAI Whisper generates word-level captions burned directly into the video.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">05</div>
-      <div class="feature-title">TikTok publishing</div>
-      <div class="feature-desc">Official TikTok Content Posting API. Every clip published with AI-generated captions and hashtags at the optimal time for the target audience. Full compliance with platform policies.</div>
-    </div>
-    <div class="feature-card">
-      <div class="feature-num">06</div>
-      <div class="feature-title">Blog monetization</div>
-      <div class="feature-desc">Every video transcript becomes a 1000-word SEO article published to WordPress within 30 minutes. AdSense ads placed strategically. Traffic compounds over time.</div>
-    </div>
-  </div>
-</div>
-
-<div class="divider"></div>
-
-<div class="cta-section" id="contact">
-  <div class="section-tag">Get in touch</div>
-  <div class="cta-title">Built for<br><em>scale.</em></div>
-  <div class="cta-desc">AI Content System runs autonomously every day at 9 AM. No manual intervention required. Every agent learns from performance data and improves its own decision weights weekly.</div>
-  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-    <a href="mailto:contact@aicontentsystem.org" class="btn-primary">Contact us</a>
-    <a href="/terms.html" class="btn-outline">Terms of Service</a>
-    <a href="/privacy.html" class="btn-outline">Privacy Policy</a>
-  </div>
-</div>
-
-<footer>
-  <p>&copy; 2026 AI Content System. All rights reserved. Operated from France.</p>
-  <p style="margin-top:10px">
-    <a href="/terms.html">Terms of Service</a>
-    <a href="/privacy.html">Privacy Policy</a>
-    <a href="mailto:contact@aicontentsystem.org">Contact</a>
-  </p>
-</footer>
+// Simulated live counter
+function animateValue(el, start, end, suffix, duration) {
+  const range = end - start;
+  const startTime = performance.now();
+  function update(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.round(start + range * eased) + (suffix || '');
+    if (progress < 1) requestAnimationFrame(update);
+  }
+  requestAnimationFrame(update);
+}
+</script>
 </body>
 </html>
