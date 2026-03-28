@@ -381,3 +381,40 @@ document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
+<script>
+const API = "http://89.168.32.223:8080/api/stats";
+async function refreshStats() {
+  try {
+    const r = await fetch(API);
+    const d = await r.json();
+    document.getElementById("s-balance").textContent = "$" + d.balance.toFixed(2);
+    document.getElementById("s-total").textContent = d.total;
+    document.getElementById("s-pnl").textContent = "$" + d.unrealised_pnl.toFixed(2);
+    document.getElementById("s-pnl").className = "stat-val " + (d.unrealised_pnl >= 0 ? "green" : "red");
+    document.getElementById("s-wr").textContent = d.winrate + "%";
+    // Positions
+    let posHtml = "";
+    if (d.positions && d.positions.length > 0) {
+      d.positions.forEach(p => {
+        const dir = p.qty < 0 ? "SHORT" : "LONG";
+        const cls = p.qty < 0 ? "tx-short" : "tx-long";
+        const pnlCls = p.pnl >= 0 ? "tx-win" : "tx-loss";
+        posHtml += "<tr><td>NOW</td><td>" + p.symbol.replace("USDTM","") + "</td><td><span class='tx-dir " + cls + "'>" + dir + "</span></td><td>$" + Number(p.entry).toFixed(4) + "</td><td>—</td><td><span class='tx-strat'>open</span></td><td class='" + pnlCls + "'>$" + Number(p.pnl).toFixed(3) + "</td><td>OPEN</td></tr>";
+      });
+    }
+    // Closed trades
+    if (d.trades) {
+      d.trades.forEach(t => {
+        if (!t.result) return;
+        const cls = t.direction === "SHORT" ? "tx-short" : "tx-long";
+        const rCls = t.result === "WIN" ? "tx-win" : "tx-loss";
+        posHtml += "<tr><td>" + (t.ts_open||"").slice(11,19) + "</td><td>" + t.symbol.replace("USDTM","") + "</td><td><span class='tx-dir " + cls + "'>" + t.direction + "</span></td><td>$" + Number(t.entry).toFixed(4) + "</td><td>" + (t.exit_price ? "$"+Number(t.exit_price).toFixed(4) : "—") + "</td><td><span class='tx-strat'>" + (t.strategy||"") + "</span></td><td class='" + rCls + "'>$" + (t.pnl_usdt||0).toFixed(2) + "</td><td>" + (t.result||"") + "</td></tr>";
+      });
+    }
+    if (!posHtml) posHtml = "<tr><td colspan='8' class='tx-empty'>Waiting for first trade to close...</td></tr>";
+    document.getElementById("tx-body").innerHTML = posHtml;
+  } catch(e) { console.log("API error:", e); }
+}
+refreshStats();
+setInterval(refreshStats, 15000);
+</script>
