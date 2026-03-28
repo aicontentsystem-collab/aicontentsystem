@@ -379,8 +379,6 @@ const observer = new IntersectionObserver(entries => {
 }, {threshold:0.1});
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </script>
-</body>
-</html>
 <script>
 const API = "https://aicontentsystem.org/stats.json";
 async function refreshStats() {
@@ -418,3 +416,6 @@ async function refreshStats() {
 refreshStats();
 setInterval(refreshStats, 15000);
 </script>
+</body>
+</html>
+
