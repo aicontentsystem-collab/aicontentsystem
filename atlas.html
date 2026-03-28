@@ -382,7 +382,7 @@ document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 </body>
 </html>
 <script>
-const API = "http://89.168.32.223:8080/api/stats";
+const API = "https://aicontentsystem.org/stats.json";
 async function refreshStats() {
   try {
     const r = await fetch(API);
