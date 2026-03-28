@@ -388,9 +388,9 @@ async function refreshStats() {
     const r = await fetch(API);
     const d = await r.json();
     document.getElementById("s-balance").textContent = "$" + d.balance.toFixed(2);
-    document.getElementById("s-total").textContent = d.total;
-    document.getElementById("s-pnl").textContent = "$" + d.unrealised_pnl.toFixed(2);
-    document.getElementById("s-pnl").className = "stat-val " + (d.unrealised_pnl >= 0 ? "green" : "red");
+    document.getElementById("s-total").textContent = d.total + " (" + d.positions.length + " open)";
+    var totalPnl = d.balance - 14.01; document.getElementById("s-pnl").textContent = "$" + totalPnl.toFixed(2);
+    document.getElementById("s-pnl").className = "stat-val " + (totalPnl >= 0 ? "green" : "red");
     document.getElementById("s-wr").textContent = d.winrate + "%";
     // Positions
     let posHtml = "";
