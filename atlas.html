@@ -235,7 +235,7 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="hero-text">
       <div class="hero-tag">Autonomous blockchain trading</div>
       <h1>ATLAS<br><em>LION BOT</em></h1>
-      <p>Self-learning AI trading engine executing transactions on blockchain futures markets. Tracks whale movements, macro sentiment, and adapts strategy weights after every trade.</p>
+      <p>Professional self-learning AI scalper executing on blockchain futures. 17 decision criteria including whale tracking, BTC correlation, ATR-based exits, volume confirmation, candlestick patterns, and P&L-weighted adaptive learning.</p>
     </div>
   </div>
 
@@ -299,6 +299,34 @@ footer a{color:var(--accent);text-decoration:none}
         <div class="criteria-num">10</div>
         <div><h4>Self-learning after every trade</h4><p>After each trade closes (win or loss), ATLAS adjusts the weight it gives to each strategy. Strategies that are winning get more influence. On losing streaks, the bot raises its confidence threshold to become more selective. On winning streaks, it trades more aggressively.</p></div>
       </div>
+      <div class="criteria">
+        <div class="criteria-num">11</div>
+        <div><h4>BTC correlation filter</h4><p>Before trading any altcoin, checks Bitcoin's trend direction. If BTC is falling, the bot won't open long positions on alts — and vice versa. This single filter prevents the most common type of losing trade.</p></div>
+      </div>
+      <div class="criteria">
+        <div class="criteria-num">12</div>
+        <div><h4>Volume confirmation gate</h4><p>Signals during low-volume periods are penalized 40%. The bot only enters with full confidence when trading volume is above average — ensuring the move is backed by real market participation.</p></div>
+      </div>
+      <div class="criteria">
+        <div class="criteria-num">13</div>
+        <div><h4>Candlestick pattern recognition</h4><p>Detects bullish/bearish engulfing patterns, pin bars (hammers and shooting stars), and wick rejections. These patterns add 12-15 points to the signal score when confirmed.</p></div>
+      </div>
+      <div class="criteria">
+        <div class="criteria-num">14</div>
+        <div><h4>Symbol performance blacklist</h4><p>Tracks win/loss rate per symbol. If a symbol loses 4 out of its last 5 trades, the bot automatically skips it until performance improves. Stops bleeding on unfavorable markets.</p></div>
+      </div>
+      <div class="criteria">
+        <div class="criteria-num">15</div>
+        <div><h4>Momentum direction check</h4><p>Before entering, verifies that price moved in the signal's direction over the last 3 candles. A long signal while price is actively falling gets halved — preventing counter-trend entries.</p></div>
+      </div>
+      <div class="criteria">
+        <div class="criteria-num">16</div>
+        <div><h4>Spread and fee awareness</h4><p>Rejects trades where the bid-ask spread exceeds 0.03%. Ensures that trading costs don't eat into profits. Every P&L calculation accounts for 0.06% taker fees on both entry and exit.</p></div>
+      </div>
+      <div class="criteria">
+        <div class="criteria-num">17</div>
+        <div><h4>P&L-weighted adaptive learning</h4><p>After each trade, strategy weights adjust proportionally to P&L size — not just win/loss. A $0.20 win boosts strategy weight more than a $0.01 win. Big losses trigger stronger penalties.</p></div>
+      </div>
     </div>
   </section>
 
@@ -307,14 +335,14 @@ footer a{color:var(--accent);text-decoration:none}
     <div class="sec-label fade-up">// Active strategies</div>
     <h2 class="sec-title fade-up">8 strategies working together</h2>
     <div class="strat-grid fade-up">
-      <div class="strat-card"><div class="strat-icon">📈</div><div class="strat-name">Trend following</div><p class="strat-desc">EMA crossovers and MACD direction across multiple timeframes</p><div class="strat-weight">~20% weight</div></div>
-      <div class="strat-card"><div class="strat-icon">⚡</div><div class="strat-name">Momentum</div><p class="strat-desc">RSI strength zones and volume surge detection</p><div class="strat-weight">~20% weight</div></div>
+      <div class="strat-card"><div class="strat-icon">📈</div><div class="strat-name">Trend following</div><p class="strat-desc">EMA crossovers, MACD direction, candlestick patterns (engulfing, pin bars), momentum confirmation across last 3 candles</p><div class="strat-weight">~30% weight (adaptive)</div></div>
+      <div class="strat-card"><div class="strat-icon">⚡</div><div class="strat-name">Momentum + Volume</div><p class="strat-desc">RSI strength zones, volume surge detection. Signals penalized 40% if volume below average. Price must move in signal direction.</p><div class="strat-weight">~20% weight (adaptive)</div></div>
       <div class="strat-card"><div class="strat-icon">↔️</div><div class="strat-name">Range trading</div><p class="strat-desc">Bollinger Band mean reversion and squeeze breakouts</p><div class="strat-weight">~15% weight</div></div>
       <div class="strat-card"><div class="strat-icon">🧠</div><div class="strat-name">Sentiment</div><p class="strat-desc">Funding rates and long/short ratio contrarian signals</p><div class="strat-weight">~15% weight</div></div>
-      <div class="strat-card"><div class="strat-icon">🐋</div><div class="strat-name">Whale tracking</div><p class="strat-desc">Large transaction detection on Binance ($50K+ trades)</p><div class="strat-weight">~15% weight</div></div>
+      <div class="strat-card"><div class="strat-icon">🐋</div><div class="strat-name">Whale tracking</div><p class="strat-desc">Real-time detection of $50K+ trades on Binance. Mega-whale alerts ($200K+) get 2x weight. Deduplication prevents double-counting.</p><div class="strat-weight">~10% weight (adaptive)</div></div>
       <div class="strat-card"><div class="strat-icon">🏗️</div><div class="strat-name">Liquidity</div><p class="strat-desc">Orderbook wall detection and bid/ask imbalance</p><div class="strat-weight">integrated</div></div>
       <div class="strat-card"><div class="strat-icon">🔄</div><div class="strat-name">Reversal</div><p class="strat-desc">Divergences, exhaustion, double patterns, wick rejection</p><div class="strat-weight">0.3x boost</div></div>
-      <div class="strat-card"><div class="strat-icon">🌍</div><div class="strat-name">Macro</div><p class="strat-desc">Fear&Greed, BTC dominance, geopolitical risk scoring</p><div class="strat-weight">0.4x boost</div></div>
+      <div class="strat-card"><div class="strat-icon">🌍</div><div class="strat-name">Macro + BTC filter</div><p class="strat-desc">Fear&Greed index, BTC dominance, geopolitical risk. BTC trend filter prevents alt trades against Bitcoin direction.</p><div class="strat-weight">veto power</div></div>
     </div>
   </section>
 
@@ -340,24 +368,24 @@ footer a{color:var(--accent);text-decoration:none}
     <h2 class="sec-title fade-up">Protecting capital at every step</h2>
     <div class="feat-grid fade-up">
       <div class="feat">
-        <div class="feat-title"><span>🎯</span> Take profit at 10%</div>
-        <p>Every position automatically closes when it reaches +10% on the leveraged amount. This locks in gains without emotional hesitation.</p>
+        <div class="feat-title"><span>🎯</span> ATR-based take profit</div>
+        <p>Take profit adapts to each symbol's volatility using ATR (Average True Range). TP = 2.5x ATR, targeting ~$0.20+ per winning trade. No fixed percentage — the market decides.</p>
       </div>
       <div class="feat">
-        <div class="feat-title"><span>🛡️</span> Stop loss at 6%</div>
-        <p>Maximum loss per trade is capped at -6%. The bot monitors positions every 10 seconds and closes instantly when the threshold is breached.</p>
+        <div class="feat-title"><span>🛡️</span> ATR-based stop loss</div>
+        <p>Stop loss = 1.2x ATR. Tight enough to limit damage (~$0.10 per loss), wide enough to avoid noise. 2:1 reward-to-risk ratio means profitability at just 34% win rate.</p>
       </div>
       <div class="feat">
-        <div class="feat-title"><span>💰</span> 25% compounding</div>
-        <p>Each trade uses 25% of available balance. As the account grows from $10 toward $100, position sizes automatically increase to accelerate compounding.</p>
+        <div class="feat-title"><span>💰</span> Full balance deployment</div>
+        <p>Each trade uses up to $10 (or all remaining balance). One position at a time with full focus. Profits compound automatically into larger positions.</p>
       </div>
       <div class="feat">
-        <div class="feat-title"><span>⏱️</span> 3-5 trades per hour</div>
-        <p>Rate-limited to prevent overtrading. Minimum 120s cooldown between trades on the same symbol, 45s global cooldown between any trade.</p>
+        <div class="feat-title"><span>⏱️</span> Quality over quantity</div>
+        <p>No minimum trade requirement. The bot waits for high-confidence setups only (55%+). 5-minute cooldown between trades. Max 4 trades per hour.</p>
       </div>
       <div class="feat">
-        <div class="feat-title"><span>⏳</span> 30-minute timeout</div>
-        <p>If a position doesn't hit TP or SL within 30 minutes, it auto-closes at market price. No stale positions left open overnight.</p>
+        <div class="feat-title"><span>⏳</span> No timeout — TP or SL only</div>
+        <p>Every trade resolves at take profit or stop loss. No premature exits. Data shows timeout closes were the #1 source of losses — eliminated entirely.</p>
       </div>
       <div class="feat">
         <div class="feat-title"><span>🔄</span> Auto-restart</div>
