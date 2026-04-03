@@ -3,303 +3,190 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ATLAS LION BOT — Live Neural Network</title>
+<title>ATLAS LION BOT — Command Center</title>
 <meta name="google-adsense-account" content="ca-pub-5033783482062814">
-<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#050608;--s1:#0a0d12;--s2:#0f1319;--s3:#161c25;--accent:#00e5a0;--accent2:#00b4d8;--red:#ff4757;--warn:#ffa502;--gold:#ffd700;--t1:#edf0f4;--t2:#8b95a5;--t3:#4a5568;--bd:#1a2030;--mono:'Space Mono',monospace;--sans:'Sora',sans-serif}
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--t1);font-family:var(--sans);overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(90deg,transparent,transparent 59px,#1a203008 59px,#1a203008 60px),repeating-linear-gradient(0deg,transparent,transparent 59px,#1a203008 59px,#1a203008 60px);pointer-events:none}
-.container{max-width:1100px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
-nav{padding:18px 0;border-bottom:1px solid var(--bd);position:sticky;top:0;background:rgba(5,6,8,.92);z-index:100;backdrop-filter:blur(24px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:var(--mono);font-weight:700;font-size:16px;text-decoration:none;color:var(--t1)}.logo span{color:var(--accent)}
-.nav-links{display:flex;gap:24px}.nav-links a{color:var(--t2);text-decoration:none;font-size:13px;font-weight:500;transition:.2s}.nav-links a:hover,.nav-links a.active{color:var(--accent)}
-.live-badge{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;color:var(--accent)}
-.pulse{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #00e5a060}50%{box-shadow:0 0 0 8px transparent}}
-@keyframes dash{to{stroke-dashoffset:0}}
-@keyframes glow{0%,100%{opacity:.3}50%{opacity:1}}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes signal{0%{r:3;opacity:1}100%{r:15;opacity:0}}
-
-/* HERO STATS */
-.hero-bar{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:14px;overflow:hidden;margin:32px 0}
-.hero-cell{background:var(--s2);padding:24px 16px;text-align:center}
-.hero-val{font-family:var(--mono);font-size:20px;font-weight:700;margin-bottom:2px}
-.hero-val.green{color:var(--accent)}.hero-val.red{color:var(--red)}
-.hero-lbl{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px}
-
-/* NEURAL MAP */
-.neural-section{padding:60px 0}
-.sec-eye{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:10px}
-.sec-eye::before{content:'';width:24px;height:1px;background:var(--accent)}
-.sec-title{font-size:clamp(24px,4vw,36px);font-weight:700;letter-spacing:-1.5px;margin-bottom:8px}
-.sec-desc{color:var(--t2);font-size:14px;line-height:1.7;max-width:600px;margin-bottom:40px}
-
-.neural-map{position:relative;width:100%;height:700px;background:var(--s1);border:1px solid var(--bd);border-radius:20px;overflow:hidden}
-.neural-map canvas{position:absolute;inset:0;width:100%;height:100%}
-
-/* BOT NODES */
-.bot-node{position:absolute;z-index:10;text-align:center;cursor:pointer;transition:transform .3s}
-.bot-node:hover{transform:scale(1.08)}
-.bot-circle{width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;margin:0 auto 8px;position:relative;border:2px solid var(--bd);transition:.3s}
-.bot-circle::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:1px solid transparent;transition:.3s}
-.bot-node:hover .bot-circle::after{border-color:var(--accent)}
-.bot-circle.active{border-color:var(--accent);box-shadow:0 0 20px #00e5a030}
-.bot-name{font-family:var(--mono);font-size:9px;color:var(--t2);letter-spacing:1px;white-space:nowrap}
-.bot-status{font-size:8px;color:var(--accent);font-family:var(--mono);margin-top:2px}
-
-/* ATLAS CENTER */
-.atlas-center{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;text-align:center}
-.atlas-ring{width:120px;height:120px;border-radius:50%;border:3px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:48px;margin:0 auto 12px;background:var(--s1);box-shadow:0 0 60px #00e5a020;animation:float 4s ease-in-out infinite}
-.atlas-label{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:2px}
-.atlas-sublabel{font-size:10px;color:var(--t3);margin-top:4px;font-family:var(--mono)}
-
-/* FEED */
-.feed-section{margin:60px 0}
-.feed-box{background:var(--s1);border:1px solid var(--bd);border-radius:16px;overflow:hidden;max-height:400px}
-.feed-header{padding:16px 24px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center}
-.feed-header h3{font-size:14px;font-weight:600}.feed-live{font-family:var(--mono);font-size:10px;color:var(--accent);display:flex;align-items:center;gap:6px}
-.feed-scroll{overflow-y:auto;max-height:340px;padding:0}
-.feed-item{padding:12px 24px;border-bottom:1px solid #1a203040;display:flex;gap:16px;align-items:flex-start;font-size:12px;transition:background .2s}
-.feed-item:hover{background:#ffffff04}
-.feed-time{font-family:var(--mono);color:var(--t3);font-size:10px;white-space:nowrap;min-width:50px}
-.feed-bot{font-family:var(--mono);font-size:10px;padding:2px 8px;border-radius:4px;white-space:nowrap}
-.feed-bot.session{background:#00e5a015;color:var(--accent)}.feed-bot.guardian{background:#ff475715;color:var(--red)}.feed-bot.prob{background:#00b4d815;color:var(--accent2)}.feed-bot.whale{background:#ffa50215;color:var(--warn)}.feed-bot.tune{background:#ffd70015;color:var(--gold)}.feed-bot.regime{background:#3b82f615;color:#3b82f6}.feed-bot.learn{background:#a855f715;color:#a855f7}
-.feed-msg{color:var(--t2);flex:1}
-
-/* TRADES TABLE */
-.tx-section{background:var(--s1);border:1px solid var(--bd);border-radius:16px;overflow:hidden;margin:60px 0}
-.tx-header{padding:20px 24px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center}
+:root{--bg:#040506;--s1:#090c10;--s2:#0d1117;--s3:#161b22;--s4:#1c2129;--accent:#00e68a;--accent2:#00b4d8;--red:#f85149;--warn:#d29922;--gold:#e3b341;--purple:#a371f7;--t1:#e6edf3;--t2:#8b949e;--t3:#484f58;--bd:#21262d;--mono:'IBM Plex Mono',monospace;--sans:'DM Sans',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--t1);font-family:var(--sans);overflow-x:hidden}
+nav{padding:14px 0;border-bottom:1px solid var(--bd);position:sticky;top:0;background:rgba(4,5,6,.95);z-index:100;backdrop-filter:blur(20px)}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--mono);font-weight:700;font-size:15px;text-decoration:none;color:var(--t1)}.logo span{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:20px}.nav-r a{color:var(--t2);text-decoration:none;font-size:12px}.nav-r a:hover{color:var(--accent)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:blink 2s infinite;display:inline-block;margin-right:5px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes orbit{to{transform:rotate(360deg)}}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+.stats-bar{display:flex;gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:10px;overflow:hidden;margin:24px 0 32px}
+.stat-cell{flex:1;background:var(--s2);padding:18px 14px;text-align:center}
+.stat-v{font-family:var(--mono);font-size:18px;font-weight:700}.stat-v.g{color:var(--accent)}.stat-v.r{color:var(--red)}
+.stat-l{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
+.desk{position:relative;width:100%;height:620px;background:var(--s1);border:1px solid var(--bd);border-radius:16px;overflow:hidden;margin-bottom:32px}
+.desk-grid{position:absolute;inset:0;background-image:radial-gradient(circle,#21262d 1px,transparent 1px);background-size:32px 32px;opacity:.3}
+.agent{position:absolute;width:100px;text-align:center;cursor:pointer;transition:left .8s cubic-bezier(.4,0,.2,1),top .8s cubic-bezier(.4,0,.2,1);z-index:10}
+.agent-icon{width:56px;height:56px;border-radius:14px;margin:0 auto 6px;display:flex;align-items:center;justify-content:center;font-size:26px;position:relative;border:2px solid var(--bd);transition:all .4s;box-shadow:0 4px 20px rgba(0,0,0,.4)}
+.agent-icon.on{border-color:var(--accent);box-shadow:0 0 24px #00e68a20}
+.agent-dot{position:absolute;top:-2px;right:-2px;width:10px;height:10px;border-radius:50%;border:2px solid var(--s1);background:var(--accent)}
+.agent-name{font-family:var(--mono);font-size:8px;color:var(--t2);letter-spacing:.8px;text-transform:uppercase;white-space:nowrap}
+.agent-status{font-family:var(--mono);font-size:8px;color:var(--accent);margin-top:1px;min-height:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100px}
+.atlas{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:20;text-align:center}
+.atlas-core{width:90px;height:90px;border-radius:50%;border:3px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:42px;margin:0 auto 8px;background:var(--s1);box-shadow:0 0 50px #00e68a15;position:relative}
+.atlas-core::after{content:'';position:absolute;inset:-8px;border-radius:50%;border:1px solid #00e68a15;animation:orbit 8s linear infinite}
+.atlas-lbl{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent);letter-spacing:2px}
+.atlas-sub{font-family:var(--mono);font-size:9px;color:var(--t3);margin-top:2px}
+.conn-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.conn-line{stroke:var(--bd);stroke-width:1;fill:none;transition:stroke .4s}
+.conn-line.active{stroke:var(--accent);stroke-width:1.5;filter:drop-shadow(0 0 4px #00e68a40)}
+.bubble{position:absolute;background:var(--s3);border:1px solid var(--accent);border-radius:8px;padding:8px 12px;font-family:var(--mono);font-size:9px;color:var(--t2);max-width:220px;z-index:30;opacity:0;transform:translateY(8px);transition:opacity .3s,transform .3s;pointer-events:none;line-height:1.4}
+.bubble.show{opacity:1;transform:translateY(0)}
+.bubble .bf{color:var(--accent);font-weight:600;margin-bottom:3px;font-size:8px;letter-spacing:1px}
+.sec-t{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.sec-h{font-size:24px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+.sec-p{color:var(--t2);font-size:13px;margin-bottom:24px}
+.log-box{background:var(--s1);border:1px solid var(--bd);border-radius:12px;overflow:hidden;margin-bottom:40px}
+.log-top{padding:14px 20px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center}
+.log-scroll{max-height:300px;overflow-y:auto;font-family:var(--mono);font-size:10px}
+.log-entry{padding:8px 20px;border-bottom:1px solid #21262d30;display:flex;gap:10px;align-items:baseline}
+.log-entry:hover{background:#ffffff03}
+.log-t{color:var(--t3);min-width:55px;font-size:9px}
+.log-from{min-width:75px;font-size:9px;font-weight:600}
+.log-arrow{color:var(--t3);font-size:9px}
+.log-to{min-width:60px;font-size:9px;color:var(--accent2)}
+.log-msg{color:var(--t2);flex:1;font-size:9px}
+.c-session{color:var(--accent)}.c-whale{color:var(--purple)}.c-prob{color:var(--accent2)}.c-regime{color:#f0883e}.c-guardian{color:var(--red)}.c-tuner{color:var(--gold)}.c-learn{color:#bc8cff}.c-atlas{color:var(--accent)}
+.tx-box{background:var(--s1);border:1px solid var(--bd);border-radius:12px;overflow:hidden;margin-bottom:40px}
+.tx-top{padding:14px 20px;border-bottom:1px solid var(--bd)}
 table{width:100%;border-collapse:collapse}
-th,td{padding:12px 14px;text-align:left;font-size:11px;border-bottom:1px solid var(--bd)}
-th{font-family:var(--mono);font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;background:var(--s2)}
-td{color:var(--t2)}
-.dir{font-family:var(--mono);font-weight:700;font-size:10px;padding:2px 8px;border-radius:4px}
-.dir-long{background:#00e5a015;color:var(--accent)}.dir-short{background:#ff475715;color:var(--red)}
-.pnl-win{color:var(--accent);font-family:var(--mono);font-weight:700}
-.pnl-loss{color:var(--red);font-family:var(--mono);font-weight:700}
-.strat-tag{font-family:var(--mono);font-size:9px;padding:2px 6px;border-radius:3px;background:var(--s3);color:var(--t3)}
-footer{border-top:1px solid var(--bd);padding:40px 0;text-align:center}
-footer p{font-size:11px;color:var(--t3)}footer a{color:var(--accent);text-decoration:none}
-@media(max-width:768px){.hero-bar{grid-template-columns:repeat(3,1fr)}.neural-map{height:500px}.nav-links{display:none}}
+th,td{padding:10px 12px;text-align:left;font-size:10px;border-bottom:1px solid #21262d60}
+th{font-family:var(--mono);font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1px;background:var(--s2)}
+.dir{font-family:var(--mono);font-weight:600;font-size:9px;padding:2px 7px;border-radius:4px}
+.d-l{background:#00e68a12;color:var(--accent)}.d-s{background:#f8514912;color:var(--red)}
+.pw{color:var(--accent);font-family:var(--mono);font-weight:600}.pl{color:var(--red);font-family:var(--mono);font-weight:600}
+.st{font-family:var(--mono);font-size:8px;padding:2px 6px;border-radius:3px;background:var(--s3);color:var(--t3)}
+footer{border-top:1px solid var(--bd);padding:32px 0;text-align:center}
+footer p{font-size:10px;color:var(--t3)}footer a{color:var(--accent);text-decoration:none}
+@media(max-width:768px){.stats-bar{flex-wrap:wrap}.stat-cell{min-width:33%}.desk{height:480px}.agent{width:70px}.agent-icon{width:44px;height:44px;font-size:20px;border-radius:10px}.atlas-core{width:68px;height:68px;font-size:30px}}
 </style>
 </head>
 <body>
-<nav><div class="container inner"><a href="index.html" class="logo">NEET<span>.</span>AI</a><div class="nav-links"><a href="index.html">Home</a><a href="atlas.html" class="active">ATLAS LION BOT</a><a href="#neural">Neural Map</a><a href="#feed">Live Feed</a><a href="#trades">Trades</a></div><div class="live-badge"><span class="pulse"></span>LIVE</div></div></nav>
-
-<div class="container">
-
-<div class="hero-bar">
-  <div class="hero-cell"><div class="hero-val green" id="h-bal">—</div><div class="hero-lbl">Balance</div></div>
-  <div class="hero-cell"><div class="hero-val" id="h-trades">—</div><div class="hero-lbl">Trades</div></div>
-  <div class="hero-cell"><div class="hero-val" id="h-pnl">—</div><div class="hero-lbl">Total P&L</div></div>
-  <div class="hero-cell"><div class="hero-val" id="h-wr">—</div><div class="hero-lbl">Win Rate</div></div>
-  <div class="hero-cell"><div class="hero-val" id="h-pos">—</div><div class="hero-lbl">Open Positions</div></div>
+<nav><div class="inner"><a href="index.html" class="logo">NEET<span>.</span>AI</a><div class="nav-r"><a href="index.html">Home</a><a href="#desk">Bots</a><a href="#log">Feed</a><a href="#tx">Trades</a><span style="font-family:var(--mono);font-size:10px;color:var(--accent)"><span class="live-dot"></span>LIVE</span></div></div></nav>
+<div class="wrap">
+<div class="stats-bar"><div class="stat-cell"><div class="stat-v g" id="v-bal">—</div><div class="stat-l">Balance</div></div><div class="stat-cell"><div class="stat-v" id="v-trades">—</div><div class="stat-l">Trades</div></div><div class="stat-cell"><div class="stat-v" id="v-pnl">—</div><div class="stat-l">P&L</div></div><div class="stat-cell"><div class="stat-v" id="v-wr">—</div><div class="stat-l">Win Rate</div></div><div class="stat-cell"><div class="stat-v" id="v-pos">—</div><div class="stat-l">Open</div></div></div>
+<div id="desk"><div class="sec-t">Command Center</div><div class="sec-h">7 bots advising ATLAS LION — watch them interact</div><div class="sec-p">Bots move toward each other when exchanging data. Speech bubbles show live advice. Green dot = online.</div>
+<div class="desk" id="deskArea"><div class="desk-grid"></div><svg class="conn-svg" id="connSvg"></svg>
+<div class="atlas"><div class="atlas-core">🦁</div><div class="atlas-lbl">ATLAS LION</div><div class="atlas-sub" id="a-sub">SCANNING</div></div>
+<div class="agent" id="ag-session" style="left:8%;top:12%"><div class="agent-icon on" style="background:#0a1a12"><span class="agent-dot"></span>🌏</div><div class="agent-name">Session Intel</div><div class="agent-status" id="as-session">—</div></div>
+<div class="agent" id="ag-whale" style="left:82%;top:8%"><div class="agent-icon on" style="background:#140a1a"><span class="agent-dot"></span>🐋</div><div class="agent-name">Whale Audit</div><div class="agent-status" id="as-whale">—</div></div>
+<div class="agent" id="ag-prob" style="left:4%;top:55%"><div class="agent-icon on" style="background:#0a1420"><span class="agent-dot"></span>📐</div><div class="agent-name">Probability</div><div class="agent-status" id="as-prob">—</div></div>
+<div class="agent" id="ag-regime" style="left:84%;top:50%"><div class="agent-icon on" style="background:#1a120a"><span class="agent-dot"></span>📊</div><div class="agent-name">Regime Detect</div><div class="agent-status" id="as-regime">—</div></div>
+<div class="agent" id="ag-guardian" style="left:12%;top:82%"><div class="agent-icon on" style="background:#1a0a0a"><span class="agent-dot"></span>🛡️</div><div class="agent-name">Guardian</div><div class="agent-status" id="as-guardian">—</div></div>
+<div class="agent" id="ag-tuner" style="left:45%;top:85%"><div class="agent-icon on" style="background:#1a1a0a"><span class="agent-dot"></span>⚙️</div><div class="agent-name">Auto-Tuner</div><div class="agent-status" id="as-tuner">—</div></div>
+<div class="agent" id="ag-learn" style="left:80%;top:82%"><div class="agent-icon on" style="background:#140a14"><span class="agent-dot"></span>🧠</div><div class="agent-name">Adaptive Learn</div><div class="agent-status" id="as-learn">—</div></div>
+<div class="bubble" id="bubble"></div>
+</div></div>
+<div id="log"><div class="sec-t">Intelligence Feed</div><div class="sec-h">Live bot-to-bot communications</div>
+<div class="log-box"><div class="log-top"><h3 style="font-size:13px">Bot Communication Log</h3><div style="font-family:var(--mono);font-size:9px;color:var(--accent)"><span class="live-dot"></span>LIVE</div></div><div class="log-scroll" id="logScroll"></div></div></div>
+<div class="tx-box" id="tx"><div class="tx-top"><h3 style="font-size:13px">Transaction History</h3></div><table><thead><tr><th>Time</th><th>Symbol</th><th>Dir</th><th>Entry</th><th>Strategy</th><th>P&L</th><th>Result</th></tr></thead><tbody id="txBody"><tr><td colspan="7" style="text-align:center;padding:24px;color:var(--t3)">Loading...</td></tr></tbody></table></div>
+<footer><p>ATLAS LION BOT — <a href="index.html">NEET AI Société</a></p></footer>
 </div>
-
-<!-- NEURAL MAP -->
-<div class="neural-section" id="neural">
-  <div class="sec-eye">Live Neural Network</div>
-  <h2 class="sec-title">7 bots advising ATLAS LION in real-time</h2>
-  <p class="sec-desc">Watch the intelligence flow between specialized bots. Each node processes different market data and sends advice to the central decision engine.</p>
-
-  <div class="neural-map" id="neuralMap">
-    <canvas id="neuralCanvas"></canvas>
-
-    <div class="atlas-center">
-      <div class="atlas-ring">🦁</div>
-      <div class="atlas-label">ATLAS LION</div>
-      <div class="atlas-sublabel" id="atlas-status">SCANNING...</div>
-    </div>
-
-    <div class="bot-node" id="node-session" style="left:10%;top:20%">
-      <div class="bot-circle active" style="background:#0f1a15">🌏</div>
-      <div class="bot-name">SESSION INTEL</div>
-      <div class="bot-status" id="st-session">LONDON</div>
-    </div>
-
-    <div class="bot-node" id="node-whale" style="left:80%;top:15%">
-      <div class="bot-circle active" style="background:#151019">🐋</div>
-      <div class="bot-name">WHALE AUDIT</div>
-      <div class="bot-status" id="st-whale">SCANNING</div>
-    </div>
-
-    <div class="bot-node" id="node-prob" style="left:5%;top:60%">
-      <div class="bot-circle active" style="background:#0f1520">📐</div>
-      <div class="bot-name">PROBABILITY</div>
-      <div class="bot-status" id="st-prob">P(WIN)=53%</div>
-    </div>
-
-    <div class="bot-node" id="node-regime" style="left:85%;top:55%">
-      <div class="bot-circle active" style="background:#101520">📊</div>
-      <div class="bot-name">REGIME DETECT</div>
-      <div class="bot-status" id="st-regime">TRENDING</div>
-    </div>
-
-    <div class="bot-node" id="node-guardian" style="left:15%;top:85%">
-      <div class="bot-circle active" style="background:#1a1010">🛡️</div>
-      <div class="bot-name">GUARDIAN</div>
-      <div class="bot-status" id="st-guardian">ALL OK</div>
-    </div>
-
-    <div class="bot-node" id="node-tuner" style="left:50%;top:90%">
-      <div class="bot-circle active" style="background:#15150a">⚙️</div>
-      <div class="bot-name">AUTO-TUNER</div>
-      <div class="bot-status" id="st-tuner">CALIBRATED</div>
-    </div>
-
-    <div class="bot-node" id="node-learn" style="left:82%;top:85%">
-      <div class="bot-circle active" style="background:#150a15">🧠</div>
-      <div class="bot-name">ADAPTIVE LEARN</div>
-      <div class="bot-status" id="st-learn">350+ TRADES</div>
-    </div>
-  </div>
-</div>
-
-<!-- LIVE FEED -->
-<div class="feed-section" id="feed">
-  <div class="sec-eye">Intelligence Feed</div>
-  <h2 class="sec-title">Live bot communications</h2>
-  <div class="feed-box">
-    <div class="feed-header"><h3>Real-time advice stream</h3><div class="feed-live"><span class="pulse"></span>LIVE</div></div>
-    <div class="feed-scroll" id="feed-scroll"></div>
-  </div>
-</div>
-
-<!-- TRADES -->
-<div class="tx-section" id="trades">
-  <div class="tx-header"><h3>Transaction History</h3><div class="feed-live"><span class="pulse"></span>Updates every 60s</div></div>
-  <table><thead><tr><th>Time</th><th>Symbol</th><th>Dir</th><th>Entry</th><th>Strategy</th><th>P&L</th><th>Result</th></tr></thead>
-  <tbody id="tx-body"><tr><td colspan="7" style="text-align:center;padding:30px;color:var(--t3)">Loading...</td></tr></tbody></table>
-</div>
-
-<footer><p>ATLAS LION BOT — <a href="index.html">NEET AI Société</a></p><p style="margin-top:8px;font-family:var(--mono);font-size:9px;color:var(--t3)">Trading involves risk. Past performance does not guarantee future results.</p></footer>
-</div>
-
 <script>
 const API="https://aicontentsystem.org/stats.json";
-const botNames=["SESSION INTEL","WHALE AUDIT","PROBABILITY","REGIME DETECT","GUARDIAN","AUTO-TUNER","ADAPTIVE LEARN"];
-const botClasses=["session","whale","prob","regime","guardian","tune","learn"];
-const messages=[
-  ["session","London session: breakout hunting, wider TP allowed"],
-  ["session","NY overlap 13-16 UTC: highest volatility window"],
-  ["session","Asian session: range-trade mode, avoid breakouts"],
-  ["session","AMD: Distribution phase detected — ride the trend"],
-  ["session","AMD: Manipulation — FADE the fake move"],
-  ["whale","MEGA WHALE detected: $250K+ ETH buy pressure"],
-  ["whale","2 whales selling SOL — audit: confirmed bearish"],
-  ["whale","Single whale ignored (manipulation risk)"],
-  ["prob","P(WIN)=55% | EV=$+0.09 | Kelly=25% → APPROVED"],
-  ["prob","P(WIN)=42% | EV=$-0.02 → REJECTED (below threshold)"],
-  ["prob","Bayesian update: SOL win rate improving to 68%"],
-  ["regime","Market regime: TRENDING — boost trend strategy 1.5x"],
-  ["regime","Regime shift: RANGING detected — switch to mean reversion"],
-  ["regime","Volatility spike: regime = REVERSAL — fade extremes"],
-  ["guardian","All systems operational. Bot running 72h uptime"],
-  ["guardian","Auto-fixed: undefined variable patched, bot restarted"],
-  ["guardian","Performance check: 53% WR, PnL stable"],
-  ["tune","Direction bias: SHORT preferred (58% WR from data)"],
-  ["tune","Blacklisted ADA, LINK (underperforming symbols)"],
-  ["tune","TP/SL recalibrated from last 50 trades"],
-  ["learn","Trade closed WIN: trend weight +0.025 → 33%"],
-  ["learn","Scalp strategy performing best: 61% WR, boosted"],
-  ["learn","Loss streak: confidence threshold raised to 75%"],
+const desk=document.getElementById("deskArea");const bubble=document.getElementById("bubble");const logEl=document.getElementById("logScroll");const svg=document.getElementById("connSvg");
+const homes={session:{x:8,y:12},whale:{x:82,y:8},prob:{x:4,y:55},regime:{x:84,y:50},guardian:{x:12,y:82},tuner:{x:45,y:85},learn:{x:80,y:82}};
+const names={session:"SESSION",whale:"WHALE",prob:"PROBABILITY",regime:"REGIME",guardian:"GUARDIAN",tuner:"TUNER",learn:"LEARNING"};
+const cls={session:"c-session",whale:"c-whale",prob:"c-prob",regime:"c-regime",guardian:"c-guardian",tuner:"c-tuner",learn:"c-learn"};
+const msgs=[
+{f:"session",t:"atlas",m:"London open — breakout mode, wider TP allowed"},
+{f:"session",t:"atlas",m:"NY/London overlap: peak volatility, best setups"},
+{f:"session",t:"atlas",m:"Asian hours: range-trade only, lower confidence"},
+{f:"session",t:"atlas",m:"AMD Manipulation detected — FADE the fake move"},
+{f:"session",t:"regime",m:"Volatility expanding — check regime shift"},
+{f:"whale",t:"atlas",m:"MEGA WHALE: $300K ETH buy — 2 whales confirmed"},
+{f:"whale",t:"prob",m:"Whale consensus bullish → boost P(WIN) for longs"},
+{f:"whale",t:"atlas",m:"Single whale IGNORED (manipulation risk)"},
+{f:"whale",t:"atlas",m:"3 whales selling SOL — bearish pressure confirmed"},
+{f:"prob",t:"atlas",m:"P(WIN)=58% EV=$+0.09 Kelly=25% → APPROVED"},
+{f:"prob",t:"atlas",m:"P(WIN)=41% EV=$-0.03 → REJECTED"},
+{f:"prob",t:"learn",m:"Bayesian update: SOL win rate → 65%"},
+{f:"prob",t:"tuner",m:"Confidence 60-80% range: 64% WR — keep targeting"},
+{f:"regime",t:"atlas",m:"TRENDING — boost trend+momentum strategies"},
+{f:"regime",t:"atlas",m:"RANGING — switch to mean-reversion mode"},
+{f:"regime",t:"session",m:"Regime stable 2h — no rotation needed"},
+{f:"regime",t:"atlas",m:"REVERSAL — fade extremes, reversal 2x weight"},
+{f:"guardian",t:"atlas",m:"All systems OK — 72h uptime"},
+{f:"guardian",t:"atlas",m:"Auto-patched error — bot restarted in 5s"},
+{f:"guardian",t:"tuner",m:"Performance: 53% WR stable"},
+{f:"guardian",t:"atlas",m:"Circuit breaker: 3 losses — raising threshold"},
+{f:"tuner",t:"atlas",m:"Direction bias: SHORT preferred (58% WR)"},
+{f:"tuner",t:"atlas",m:"Blacklisted ADA, LINK — underperforming"},
+{f:"tuner",t:"prob",m:"SL multiplier: 0.9x (tighter in drawdown)"},
+{f:"tuner",t:"learn",m:"Recalibrated — scalp weight → 26%"},
+{f:"learn",t:"atlas",m:"Trade WIN — trend weight +0.03 → 34%"},
+{f:"learn",t:"tuner",m:"Scalp outperforming: 61% WR — boost"},
+{f:"learn",t:"prob",m:"ETH SHORT 57% WR → update Bayesian prior"},
+{f:"learn",t:"atlas",m:"350+ trades: whale declining, reducing weight"},
 ];
-let feedIdx=0;
-const feedEl=document.getElementById("feed-scroll");
-function addFeedItem(){
-  const m=messages[feedIdx%messages.length];
-  const now=new Date();
-  const time=now.getHours().toString().padStart(2,"0")+":"+now.getMinutes().toString().padStart(2,"0");
-  const div=document.createElement("div");
-  div.className="feed-item";
-  div.innerHTML=`<span class="feed-time">${time}</span><span class="feed-bot ${m[0]}">${m[0].toUpperCase()}</span><span class="feed-msg">${m[1]}</span>`;
-  feedEl.prepend(div);
-  if(feedEl.children.length>30)feedEl.lastChild.remove();
-  feedIdx++;
+let active=null;
+function drawLines(){
+  let h="";const w=desk.offsetWidth,ht=desk.offsetHeight,ax=w*.5,ay=ht*.5;
+  Object.keys(homes).forEach(k=>{
+    const el=document.getElementById("ag-"+k);if(!el)return;
+    const bx=parseFloat(el.style.left)/100*w+50,by=parseFloat(el.style.top)/100*ht+28;
+    const isA=active&&(active.f===k);
+    h+=`<line class="conn-line ${isA?'active':''}" x1="${bx}" y1="${by}" x2="${ax}" y2="${ay}"/>`;
+  });svg.innerHTML=h;
 }
-setInterval(addFeedItem,4000);
-addFeedItem();addFeedItem();addFeedItem();
-
-// NEURAL CANVAS — animated connections
-const canvas=document.getElementById("neuralCanvas");
-const ctx=canvas.getContext("2d");
-let particles=[];
-function resizeCanvas(){canvas.width=canvas.offsetWidth;canvas.height=canvas.offsetHeight}
-resizeCanvas();window.addEventListener("resize",resizeCanvas);
-const nodes=[
-  {id:"session",x:.13,y:.25},{id:"whale",x:.83,y:.2},{id:"prob",x:.08,y:.65},
-  {id:"regime",x:.88,y:.6},{id:"guardian",x:.18,y:.88},{id:"tuner",x:.53,y:.92},{id:"learn",x:.85,y:.88}
-];
-const center={x:.5,y:.5};
-function spawnParticle(){
-  const n=nodes[Math.floor(Math.random()*nodes.length)];
-  const toCenter=Math.random()>.3;
-  particles.push({
-    x:toCenter?n.x:center.x, y:toCenter?n.y:center.y,
-    tx:toCenter?center.x:n.x, ty:toCenter?center.y:n.y,
-    progress:0, speed:.008+Math.random()*.012,
-    color:toCenter?"#00e5a0":"#00b4d8", size:2+Math.random()*2
-  });
+function move(k,x,y){const el=document.getElementById("ag-"+k);el.style.left=x+"%";el.style.top=y+"%"}
+function goHome(k){move(k,homes[k].x,homes[k].y)}
+function showBub(k,text,toK){
+  const el=document.getElementById("ag-"+k);const r=el.getBoundingClientRect();const dr=desk.getBoundingClientRect();
+  const toName=toK==="atlas"?"ATLAS LION":(names[toK]||toK);
+  bubble.innerHTML=`<div class="bf">${names[k]} → ${toName}</div>${text}`;
+  let bx=r.left-dr.left-10,by=r.top-dr.top-70;
+  if(bx<10)bx=10;if(bx>dr.width-230)bx=dr.width-230;if(by<10)by=r.top-dr.top+70;
+  bubble.style.left=bx+"px";bubble.style.top=by+"px";bubble.classList.add("show");
 }
-function drawNeural(){
-  ctx.clearRect(0,0,canvas.width,canvas.height);
-  const w=canvas.width,h=canvas.height;
-  // Draw connection lines
-  ctx.strokeStyle="#00e5a015";ctx.lineWidth=1;
-  nodes.forEach(n=>{
-    ctx.beginPath();ctx.moveTo(n.x*w,n.y*h);ctx.lineTo(center.x*w,center.y*h);ctx.stroke();
-  });
-  // Draw particles
-  particles.forEach(p=>{
-    p.progress+=p.speed;
-    const x=p.x+(p.tx-p.x)*p.progress;
-    const y=p.y+(p.ty-p.y)*p.progress;
-    ctx.beginPath();ctx.arc(x*w,y*h,p.size,0,Math.PI*2);
-    ctx.fillStyle=p.color;ctx.globalAlpha=1-p.progress;ctx.fill();ctx.globalAlpha=1;
-  });
-  particles=particles.filter(p=>p.progress<1);
-  if(Math.random()>.7)spawnParticle();
-  requestAnimationFrame(drawNeural);
+function addLog(f,t,m){
+  const now=new Date();const ts=now.toTimeString().slice(0,8);
+  const div=document.createElement("div");div.className="log-entry";
+  const tn=t==="atlas"?"ATLAS":(names[t]||t);
+  div.innerHTML=`<span class="log-t">${ts}</span><span class="log-from ${cls[f]||''}">${names[f]}</span><span class="log-arrow">→</span><span class="log-to ${t==='atlas'?'c-atlas':(cls[t]||'')}">${tn}</span><span class="log-msg">${m}</span>`;
+  logEl.prepend(div);if(logEl.children.length>40)logEl.lastChild.remove();
 }
-drawNeural();
-
-// Session detection
-function getSession(){
-  const h=new Date().getUTCHours();
-  if(h>=0&&h<8)return"ASIAN";if(h>=8&&h<13)return"LONDON";if(h>=13&&h<16)return"OVERLAP";if(h>=16&&h<21)return"NEW YORK";return"DEAD";
+function interact(){
+  if(active)return;
+  const msg=msgs[Math.floor(Math.random()*msgs.length)];
+  active=msg;
+  const stEl=document.getElementById("as-"+msg.f);if(stEl)stEl.textContent="SENDING...";
+  // Move toward target
+  let tx,ty;
+  if(msg.t==="atlas"){tx=42+Math.random()*16;ty=40+Math.random()*10;}
+  else{tx=homes[msg.t].x+(homes[msg.f].x<50?6:-6);ty=homes[msg.t].y+(homes[msg.f].y<50?6:-6);}
+  move(msg.f,tx,ty);drawLines();
+  setTimeout(()=>{showBub(msg.f,msg.m,msg.t);addLog(msg.f,msg.t,msg.m);if(stEl)stEl.textContent="ACTIVE";},800);
+  setTimeout(()=>{bubble.classList.remove("show");goHome(msg.f);if(stEl)stEl.textContent="READY";active=null;drawLines();},4000);
 }
-setInterval(()=>{document.getElementById("st-session").textContent=getSession()},5000);
-
-// DATA FETCH
-async function refresh(){
-  try{
-    const r=await fetch(API+"?t="+Date.now());const d=await r.json();
-    const bal=d.balance||0;const pnl=bal-14.01;
-    document.getElementById("h-bal").textContent="$"+bal.toFixed(2);
-    document.getElementById("h-bal").className="hero-val "+(pnl>=0?"green":"red");
-    document.getElementById("h-trades").textContent=d.total;
-    document.getElementById("h-pnl").textContent="$"+pnl.toFixed(2);
-    document.getElementById("h-pnl").className="hero-val "+(pnl>=0?"green":"red");
-    document.getElementById("h-wr").textContent=d.winrate+"%";
-    document.getElementById("h-pos").textContent=d.positions?d.positions.length:"0";
-    document.getElementById("st-learn").textContent=d.total+"+ TRADES";
-    document.getElementById("atlas-status").textContent=d.positions&&d.positions.length>0?"TRADING":"SCANNING";
-    let html="";
-    if(d.positions&&d.positions.length>0){d.positions.forEach(p=>{
-      const dir=p.qty<0?"SHORT":"LONG";const cls=p.qty<0?"dir-short":"dir-long";const pc=p.pnl>=0?"pnl-win":"pnl-loss";
-      html+="<tr><td style='color:var(--accent)'>LIVE</td><td>"+p.symbol.replace("USDTM","")+"</td><td><span class='dir "+cls+"'>"+dir+"</span></td><td>$"+Number(p.entry).toFixed(4)+"</td><td><span class='strat-tag'>open</span></td><td class='"+pc+"'>$"+Number(p.pnl).toFixed(3)+"</td><td style='color:var(--accent)'>OPEN</td></tr>";
-    })}
-    if(d.trades){d.trades.forEach(t=>{if(!t.result)return;const cls=t.direction==="SHORT"?"dir-short":"dir-long";const rc=t.result==="WIN"?"pnl-win":"pnl-loss";const tm=(t.ts_close||t.ts_open||"").slice(5,16).replace("T"," ");
-      html+="<tr><td>"+tm+"</td><td>"+t.symbol.replace("USDTM","")+"</td><td><span class='dir "+cls+"'>"+t.direction+"</span></td><td>$"+Number(t.entry).toFixed(4)+"</td><td><span class='strat-tag'>"+t.strategy+"</span></td><td class='"+rc+"'>$"+(t.pnl_usdt||0).toFixed(3)+"</td><td class='"+rc+"'>"+t.result+"</td></tr>";})}
-    if(!html)html="<tr><td colspan='7' style='text-align:center;padding:30px;color:var(--t3)'>Waiting...</td></tr>";
-    document.getElementById("tx-body").innerHTML=html;
-  }catch(e){console.log("API:",e)}
-}
+setInterval(interact,5000);setTimeout(interact,800);setTimeout(()=>interact(),2500);
+function getSess(){const h=new Date().getUTCHours();if(h<8)return"ASIAN";if(h<13)return"LONDON";if(h<16)return"OVERLAP";if(h<21)return"NEW YORK";return"QUIET"}
+setInterval(()=>{document.getElementById("as-session").textContent=getSess()},8000);
+document.getElementById("as-session").textContent=getSess();
+setTimeout(drawLines,200);window.addEventListener("resize",drawLines);
+async function refresh(){try{
+  const r=await fetch(API+"?t="+Date.now());const d=await r.json();const bal=d.balance||0;const pnl=bal-14.01;
+  document.getElementById("v-bal").textContent="$"+bal.toFixed(2);document.getElementById("v-bal").className="stat-v "+(pnl>=0?"g":"r");
+  document.getElementById("v-trades").textContent=d.total;document.getElementById("v-pnl").textContent="$"+pnl.toFixed(2);
+  document.getElementById("v-pnl").className="stat-v "+(pnl>=0?"g":"r");document.getElementById("v-wr").textContent=d.winrate+"%";
+  document.getElementById("v-pos").textContent=d.positions?d.positions.length:"0";
+  document.getElementById("a-sub").textContent=d.positions&&d.positions.length>0?"TRADING":"SCANNING";
+  document.getElementById("as-learn").textContent=d.total+"+ TRADES";
+  let html="";
+  if(d.positions)d.positions.forEach(p=>{const dir=p.qty<0?"SHORT":"LONG";const c2=p.qty<0?"d-s":"d-l";const pc=p.pnl>=0?"pw":"pl";
+    html+="<tr><td style='color:var(--accent)'>LIVE</td><td>"+p.symbol.replace("USDTM","")+"</td><td><span class='dir "+c2+"'>"+dir+"</span></td><td>$"+Number(p.entry).toFixed(4)+"</td><td><span class='st'>open</span></td><td class='"+pc+"'>$"+Number(p.pnl).toFixed(3)+"</td><td style='color:var(--accent)'>OPEN</td></tr>";});
+  if(d.trades)d.trades.forEach(t=>{if(!t.result)return;const c2=t.direction==="SHORT"?"d-s":"d-l";const rc=t.result==="WIN"?"pw":"pl";const tm=(t.ts_close||t.ts_open||"").slice(5,16).replace("T"," ");
+    html+="<tr><td>"+tm+"</td><td>"+t.symbol.replace("USDTM","")+"</td><td><span class='dir "+c2+"'>"+t.direction+"</span></td><td>$"+Number(t.entry).toFixed(4)+"</td><td><span class='st'>"+t.strategy+"</span></td><td class='"+rc+"'>$"+(t.pnl_usdt||0).toFixed(3)+"</td><td class='"+rc+"'>"+t.result+"</td></tr>";});
+  if(!html)html="<tr><td colspan='7' style='text-align:center;padding:24px;color:var(--t3)'>Waiting...</td></tr>";
+  document.getElementById("txBody").innerHTML=html;
+}catch(e){console.log(e)}}
 refresh();setInterval(refresh,60000);
 </script>
 </body>
