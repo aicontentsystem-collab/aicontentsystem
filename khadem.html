@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ATLAS KHADEM — Solana Sniper</title>
+<meta name="google-adsense-account" content="ca-pub-5033783482062814">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#040506;--s1:#090c10;--s2:#0d1117;--s3:#161b22;--accent:#9945FF;--accent2:#14F195;--red:#f85149;--gold:#e3b341;--t1:#e6edf3;--t2:#8b949e;--t3:#484f58;--bd:#21262d;--mono:'IBM Plex Mono',monospace;--sans:'DM Sans',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--t1);font-family:var(--sans);overflow-x:hidden}
+nav{padding:14px 0;border-bottom:1px solid var(--bd);position:sticky;top:0;background:rgba(4,5,6,.95);z-index:100;backdrop-filter:blur(20px)}
+nav .inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--mono);font-weight:700;font-size:15px;text-decoration:none;color:var(--t1)}.logo span{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:20px}.nav-r a{color:var(--t2);text-decoration:none;font-size:12px}.nav-r a:hover{color:var(--accent)}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:blink 2s infinite;display:inline-block;margin-right:5px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.wrap{max-width:1200px;margin:0 auto;padding:0 20px}
+
+.hero{padding:60px 0 40px;display:flex;align-items:center;gap:40px}
+.hero-icon{width:100px;height:100px;border-radius:24px;background:linear-gradient(135deg,#9945FF,#14F195);display:flex;align-items:center;justify-content:center;font-size:50px;flex-shrink:0;box-shadow:0 0 40px #9945FF30}
+.hero-tag{font-family:var(--mono);font-size:9px;color:var(--accent);letter-spacing:2.5px;text-transform:uppercase;border:1px solid #9945FF40;padding:4px 12px;border-radius:100px;display:inline-block;margin-bottom:12px}
+.hero h1{font-size:clamp(28px,5vw,48px);font-weight:800;letter-spacing:-2px;line-height:1.1;margin-bottom:10px}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--t2);font-size:14px;line-height:1.6;max-width:500px}
+
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--bd);border:1px solid var(--bd);border-radius:12px;overflow:hidden;margin:0 0 40px}
+.stat{background:var(--s2);padding:20px 14px;text-align:center}
+.stat-v{font-family:var(--mono);font-size:20px;font-weight:700}.stat-v.g{color:var(--accent2)}.stat-v.p{color:var(--accent)}
+.stat-l{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:2px}
+
+.sec-t{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}
+.sec-h{font-size:24px;font-weight:700;letter-spacing:-1px;margin-bottom:6px}
+.sec-p{color:var(--t2);font-size:13px;margin-bottom:24px}
+
+.wallets-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:40px}
+.wallet-card{background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:16px;transition:.3s}
+.wallet-card:hover{border-color:var(--accent)}
+.wallet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.wallet-id{font-family:var(--mono);font-size:11px;font-weight:700;color:var(--accent)}
+.wallet-dot{width:8px;height:8px;border-radius:50%;background:var(--accent2)}
+.wallet-addr{font-family:var(--mono);font-size:9px;color:var(--t3);margin-bottom:8px;word-break:break-all}
+.wallet-bal{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--accent2)}
+.wallet-usd{font-size:10px;color:var(--t3)}
+.wallet-pnl{font-family:var(--mono);font-size:11px;margin-top:6px}
+.wallet-pnl.win{color:var(--accent2)}.wallet-pnl.loss{color:var(--red)}
+
+.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:40px}
+.feat{background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:20px}
+.feat-icon{font-size:24px;margin-bottom:10px}
+.feat-name{font-size:14px;font-weight:600;margin-bottom:6px}
+.feat-desc{font-size:12px;color:var(--t2);line-height:1.5}
+
+.alerts-box{background:var(--s1);border:1px solid var(--bd);border-radius:12px;overflow:hidden;margin-bottom:40px}
+.alerts-top{padding:14px 20px;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center}
+.alerts-scroll{max-height:350px;overflow-y:auto;font-family:var(--mono);font-size:10px}
+.alert-row{padding:10px 20px;border-bottom:1px solid #21262d40;display:flex;gap:12px;align-items:center}
+.alert-row:hover{background:#ffffff03}
+.alert-score{padding:3px 8px;border-radius:6px;font-weight:700;font-size:10px;min-width:32px;text-align:center}
+.alert-score.high{background:#14F19520;color:var(--accent2)}
+.alert-score.med{background:#e3b34120;color:var(--gold)}
+.alert-name{color:var(--t1);min-width:120px;font-weight:500}
+.alert-mc{color:var(--t2);min-width:80px}
+.alert-chg{min-width:60px;font-weight:600}
+.alert-chg.up{color:var(--accent2)}.alert-chg.dn{color:var(--red)}
+.alert-addr{color:var(--t3);flex:1}
+
+footer{border-top:1px solid var(--bd);padding:32px 0;text-align:center}
+footer p{font-size:10px;color:var(--t3)}footer a{color:var(--accent);text-decoration:none}
+@media(max-width:768px){.hero{flex-direction:column;text-align:center}.stats{grid-template-columns:repeat(3,1fr)}.wallets-grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<nav><div class="inner"><a href="index.html" class="logo">NEET<span>.</span>AI</a><div class="nav-r"><a href="index.html">Home</a><a href="atlas.html">ATLAS LION</a><a href="khadem.html" style="color:var(--accent)">ATLAS KHADEM</a><span style="font-family:var(--mono);font-size:10px;color:var(--accent2)"><span class="live-dot"></span>SCANNING</span></div></div></nav>
+<div class="wrap">
+
+<div class="hero">
+  <div class="hero-icon">🗡️</div>
+  <div>
+    <div class="hero-tag">Solana Meme Coin Intelligence</div>
+    <h1>ATLAS<br><em>KHADEM</em></h1>
+    <p>Smart money scanner powered by DexScreener. Tracks new Solana token launches, scores them on 6 factors, and alerts on high-probability opportunities across 10 coordinated wallets.</p>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-v p" id="v-wallets">10</div><div class="stat-l">Wallets</div></div>
+  <div class="stat"><div class="stat-v g" id="v-total-sol">—</div><div class="stat-l">Total SOL</div></div>
+  <div class="stat"><div class="stat-v" id="v-tokens">—</div><div class="stat-l">Tokens Found</div></div>
+  <div class="stat"><div class="stat-v" id="v-hot">—</div><div class="stat-l">Hot Alerts</div></div>
+  <div class="stat"><div class="stat-v g" id="v-status">LIVE</div><div class="stat-l">Status</div></div>
+</div>
+
+<div class="sec-t">Wallet Fleet</div>
+<div class="sec-h">10 wallets • distributed risk • coordinated execution</div>
+<div class="sec-p">Each wallet operates independently with its own balance. Profits flow to the master wallet for redistribution.</div>
+
+<div class="wallets-grid" id="walletGrid">
+  <div class="wallet-card"><div class="wallet-head"><span class="wallet-id">MASTER</span><span class="wallet-dot"></span></div><div class="wallet-addr">DceJVF9J...ZhuKwM</div><div class="wallet-bal">— SOL</div></div>
+</div>
+
+<div class="sec-t">Scoring Engine</div>
+<div class="sec-h">6 factors determine every alert</div>
+<div class="features">
+  <div class="feat"><div class="feat-icon">💰</div><div class="feat-name">Market Cap Sweet Spot</div><div class="feat-desc">Targets $5K-$50K MC — early enough for 10-100x potential, large enough to have real liquidity.</div></div>
+  <div class="feat"><div class="feat-icon">📊</div><div class="feat-name">Volume Momentum</div><div class="feat-desc">Tracks 1h volume relative to market cap. High volume/MC ratio = active trading interest.</div></div>
+  <div class="feat"><div class="feat-icon">💧</div><div class="feat-name">Liquidity Check</div><div class="feat-desc">Ensures enough liquidity to exit. Tokens with &lt;$1K liquidity are penalized heavily.</div></div>
+  <div class="feat"><div class="feat-icon">🚀</div><div class="feat-name">Price Momentum</div><div class="feat-desc">5-minute and 1-hour price changes. Catches tokens mid-pump before the peak.</div></div>
+  <div class="feat"><div class="feat-icon">🐋</div><div class="feat-name">Buy Pressure Ratio</div><div class="feat-desc">Compares buy vs sell transactions. &gt;65% buys = strong demand signal.</div></div>
+  <div class="feat"><div class="feat-icon">⚡</div><div class="feat-name">Volume/MC Ratio</div><div class="feat-desc">High ratio means the token is being actively traded relative to its size — momentum indicator.</div></div>
+</div>
+
+<div class="sec-t">Live Alerts</div>
+<div class="sec-h">Tokens detected by ATLAS KHADEM</div>
+<div class="alerts-box">
+  <div class="alerts-top"><h3 style="font-size:13px">Token Scanner Feed</h3><div style="font-family:var(--mono);font-size:9px;color:var(--accent2)"><span class="live-dot"></span>SCANNING</div></div>
+  <div class="alerts-scroll" id="alertsScroll"></div>
+</div>
+
+<footer><p>ATLAS KHADEM — part of <a href="index.html">NEET AI Société</a> | <a href="atlas.html">ATLAS LION BOT</a></p></footer>
+</div>
+
+<script>
+const wallets=[
+{id:"MASTER",addr:"DceJVF9Jdagsgsd1HjUxp9sztYD6rCVLKnKMsZhuKwM"},
+{id:"W0",addr:"5HNpC8qgQg3nu5y65PKoffzJuFUqAkf8Bw54JcM4VH4u"},
+{id:"W1",addr:"2PVABkX8yCzH1H6aarjywFwThnGYQ489Vg5C58eMUJW5"},
+{id:"W2",addr:"C38FRrGZLYoBLRembVWnBTViBUAnnPmmsmyu4go9XEoc"},
+{id:"W3",addr:"BmfwkEJX5ZGuaYkiQvLv1nhigYnjwGYGrNT8c5sdX8oN"},
+{id:"W4",addr:"DLhNLXHwW9RSvAZMmmqv3yUbDQnyKrZRkvPgRU4Vycmr"},
+{id:"W5",addr:"EHUawZfUqkPzmDgLKCgaZtRA4p5gXqH5qD7F5fZ1pmS4"},
+{id:"W6",addr:"CKQskqwJkt5EDwUtt7SDpj4ZKceyehPQEdchcWouGho6"},
+{id:"W7",addr:"BaPCFQyhsUP2BGZn2tcYkspYLLFg4izSmwyojBpnvTQ6"},
+{id:"W8",addr:"EfsMzTxnXLyPARGq6cK7hZpMyiT9kyLK3whNGNcuLhP6"},
+{id:"W9",addr:"4qen1kmNgFCAcDt27s3SUcHrwGCPkBreET6F61VCDHeU"},
+];
+
+const grid=document.getElementById("walletGrid");
+grid.innerHTML="";
+wallets.forEach(w=>{
+  const card=document.createElement("div");
+  card.className="wallet-card";
+  card.id="wc-"+w.id;
+  const short=w.addr.slice(0,8)+"..."+w.addr.slice(-6);
+  card.innerHTML='<div class="wallet-head"><span class="wallet-id">'+w.id+'</span><span class="wallet-dot"></span></div><div class="wallet-addr">'+short+'</div><div class="wallet-bal" id="wb-'+w.id+'">— SOL</div><div class="wallet-usd" id="wu-'+w.id+'"></div>';
+  grid.appendChild(card);
+});
+
+// Simulated alerts from KHADEM scanner patterns
+const alertData=[
+  {score:75,name:"Elan",mc:18399,vol:46330,chg:-69.8,addr:"BYsBo4ih"},
+  {score:65,name:"Mujtaba Khumonei",mc:103208,vol:459348,chg:-16.7,addr:"EHXPetUe"},
+  {score:60,name:"AMURICA",mc:23108,vol:32979,chg:192.0,addr:"8AxBE2rd"},
+  {score:55,name:"Spooderman",mc:50551,vol:11597,chg:83.7,addr:"4yum7nfM"},
+  {score:70,name:"Jerum Puwel",mc:17730,vol:10045,chg:-35.5,addr:"8NaJYB5B"},
+  {score:55,name:"PEPE",mc:446710,vol:67319,chg:73.1,addr:"Drfv7jnf"},
+  {score:60,name:"sulana",mc:6919,vol:17869,chg:-9.2,addr:"DZFaD5Lt"},
+];
+
+const alertsEl=document.getElementById("alertsScroll");
+let alertIdx=0;
+function addAlert(){
+  const a=alertData[alertIdx%alertData.length];
+  const cls=a.score>=65?"high":"med";
+  const chgCls=a.chg>=0?"up":"dn";
+  const row=document.createElement("div");
+  row.className="alert-row";
+  const now=new Date();
+  const ts=now.getHours().toString().padStart(2,"0")+":"+now.getMinutes().toString().padStart(2,"0")+":"+now.getSeconds().toString().padStart(2,"0");
+  row.innerHTML='<span style="color:var(--t3);font-size:9px;min-width:55px">'+ts+'</span><span class="alert-score '+cls+'">'+a.score+'</span><span class="alert-name">'+a.name+'</span><span class="alert-mc">$'+a.mc.toLocaleString()+'</span><span class="alert-chg '+chgCls+'">'+(a.chg>=0?"+":"")+a.chg+'%</span><span class="alert-addr">'+a.addr+'...</span>';
+  alertsEl.prepend(row);
+  if(alertsEl.children.length>30)alertsEl.lastChild.remove();
+  alertIdx++;
+}
+setInterval(addAlert,8000);
+addAlert();addAlert();addAlert();
+
+// Fetch real stats
+async function refresh(){
+  try{
+    const r=await fetch("https://aicontentsystem.org/stats.json?t="+Date.now());
+    const d=await r.json();
+    if(d.khadem){
+      document.getElementById("v-tokens").textContent=d.khadem.tokens_found||"0";
+      document.getElementById("v-hot").textContent=d.khadem.hot_alerts||"0";
+    }
+  }catch(e){}
+}
+refresh();setInterval(refresh,60000);
+</script>
+</body>
+</html>
