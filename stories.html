@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Story Studio — AI Video Creator</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#040506;--s1:#090c10;--s2:#0d1117;--s3:#161b22;--accent:#FF6B9D;--accent2:#C084FC;--accent3:#67E8F9;--t1:#e6edf3;--t2:#8b949e;--t3:#484f58;--bd:#21262d;--mono:'IBM Plex Mono',monospace;--sans:'DM Sans',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}body{background:var(--bg);color:var(--t1);font-family:var(--sans)}
+nav{padding:14px 0;border-bottom:1px solid var(--bd);position:sticky;top:0;background:rgba(4,5,6,.95);z-index:100;backdrop-filter:blur(20px)}
+nav .inner{max-width:900px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:var(--mono);font-weight:600;font-size:15px;text-decoration:none;color:var(--t1)}.logo span{color:var(--accent)}
+.nav-r{display:flex;gap:16px}.nav-r a{color:var(--t2);text-decoration:none;font-size:12px}.nav-r a:hover{color:var(--accent)}
+.wrap{max-width:900px;margin:0 auto;padding:40px 20px}
+.hero{text-align:center;margin-bottom:48px}
+.hero-icon{font-size:64px;margin-bottom:16px}
+.hero h1{font-size:36px;font-weight:800;letter-spacing:-2px;margin-bottom:8px;background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--t2);font-size:14px;max-width:500px;margin:0 auto}
+.studio{background:var(--s1);border:1px solid var(--bd);border-radius:16px;padding:32px;margin-bottom:32px}
+.field{margin-bottom:20px}
+.field label{display:block;font-family:var(--mono);font-size:11px;color:var(--t2);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.field input,.field textarea{width:100%;background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:14px 16px;color:var(--t1);font-family:var(--sans);font-size:14px;outline:none;transition:.2s}
+.field input:focus,.field textarea:focus{border-color:var(--accent)}
+.field textarea{min-height:200px;resize:vertical;line-height:1.6}
+.hint{font-size:11px;color:var(--t3);margin-top:6px}
+.voices{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.voice-btn{background:var(--s2);border:1px solid var(--bd);border-radius:8px;padding:8px 14px;font-size:12px;color:var(--t2);cursor:pointer;transition:.2s;font-family:var(--mono)}
+.voice-btn:hover{border-color:var(--accent);color:var(--t1)}
+.voice-btn.active{border-color:var(--accent);color:var(--accent);background:var(--s3)}
+.gen-btn{width:100%;padding:16px;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:.3s;font-family:var(--sans);background:linear-gradient(135deg,var(--accent),var(--accent2));color:white}
+.gen-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(255,107,157,.3)}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.progress{display:none;background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:24px;text-align:center;margin-top:20px}
+.progress.show{display:block}
+.progress-bar{height:6px;background:var(--s3);border-radius:3px;margin:16px 0;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;transition:width .5s;width:0%}
+.progress-text{font-family:var(--mono);font-size:12px;color:var(--t2)}
+.result{display:none;background:var(--s1);border:1px solid var(--accent);border-radius:16px;padding:32px;text-align:center;margin-top:20px}
+.result.show{display:block}
+.result h3{font-size:18px;margin-bottom:16px;color:var(--accent)}
+.dl-btn{display:inline-block;padding:14px 32px;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;margin:8px;transition:.2s;font-family:var(--sans)}
+.dl-btn.primary{background:var(--accent);color:white}.dl-btn.primary:hover{transform:translateY(-2px)}
+.dl-btn.secondary{background:var(--s3);color:var(--t1);border:1px solid var(--bd)}.dl-btn.secondary:hover{border-color:var(--accent)}
+.history{margin-top:40px}
+.history h3{font-size:16px;font-weight:600;margin-bottom:16px}
+.vid-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.vid-card{background:var(--s2);border:1px solid var(--bd);border-radius:10px;padding:16px;text-align:center;transition:.2s}
+.vid-card:hover{border-color:var(--accent)}
+.vid-card .name{font-family:var(--mono);font-size:11px;color:var(--t2);margin-bottom:8px;word-break:break-all}
+.vid-card a{font-size:12px;color:var(--accent);text-decoration:none}
+footer{border-top:1px solid var(--bd);padding:32px 0;text-align:center;margin-top:60px}
+footer p{font-size:10px;color:var(--t3)}footer a{color:var(--accent);text-decoration:none}
+</style>
+</head>
+<body>
+<nav><div class="inner"><a href="index.html" class="logo">NEET<span>.</span>AI</a><div class="nav-r"><a href="index.html">Home</a><a href="atlas.html">ATLAS LION</a><a href="khadem.html">ATLAS KHADEM</a><a href="stories.html" style="color:var(--accent)">Story Studio</a></div></div></nav>
+<div class="wrap">
+<div class="hero">
+<div class="hero-icon">📖✨</div>
+<h1>Story Studio</h1>
+<p>Create beautiful narrated story videos for TikTok. Type your story, pick a voice, and download the video.</p>
+</div>
+<div class="studio">
+<div class="field">
+<label>Story Title</label>
+<input type="text" id="title" placeholder="Luna the Brave Little Star" value="Luna the Brave Little Star">
+</div>
+<div class="field">
+<label>Story Text (each line = one scene)</label>
+<textarea id="story" placeholder="Write your story here...">Once upon a time, high above the clouds, there lived a tiny star named Luna.
+Luna was the smallest star in the sky, but her light was warm and kind.
+One night, a little girl on Earth looked up and whispered: I wish I could see a shooting star!
+Luna heard the wish! She took a deep breath and jumped across the sky!
+She flew so fast that she became the most beautiful shooting star anyone had ever seen!
+The little girl smiled and said: Thank you little star! You made my wish come true!
+And from that night on, Luna knew that even the smallest star can make the biggest difference.
+The End. Remember: You are never too small to do something great!</textarea>
+<div class="hint">Write 5-10 lines for a 30-60 second TikTok video. Each line becomes a narrated scene.</div>
+</div>
+<div class="field">
+<label>Narrator Voice</label>
+<div class="voices" id="voices">
+<div class="voice-btn active" data-v="en-US-AnaNeural">Ana (Girl)</div>
+<div class="voice-btn" data-v="en-US-JennyNeural">Jenny (Woman)</div>
+<div class="voice-btn" data-v="en-US-GuyNeural">Guy (Man)</div>
+<div class="voice-btn" data-v="en-GB-SoniaNeural">Sonia (British)</div>
+<div class="voice-btn" data-v="fr-FR-DeniseNeural">Denise (French)</div>
+<div class="voice-btn" data-v="ar-SA-ZariyahNeural">Zariyah (Arabic)</div>
+</div>
+</div>
+<button class="gen-btn" id="genBtn" onclick="generate()">Generate Video</button>
+<div class="progress" id="progress">
+<div class="progress-text" id="progText">Generating scenes...</div>
+<div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+</div>
+<div class="result" id="result">
+<h3>Your video is ready!</h3>
+<p id="resultInfo" style="color:var(--t2);font-size:13px;margin-bottom:16px"></p>
+<a class="dl-btn primary" id="dlBtn" href="#" download>Download Video</a>
+<a class="dl-btn secondary" href="https://www.tiktok.com/creator#/upload" target="_blank">Upload to TikTok</a>
+</div>
+</div>
+<div class="history" id="history">
+<h3>Previously Generated Videos</h3>
+<div class="vid-grid" id="vidGrid"></div>
+</div>
+<footer><p>Story Studio — <a href="index.html">NEET AI Societe</a></p></footer>
+</div>
+<script>
+var API="http://89.168.32.223:8090";
+var selectedVoice="en-US-AnaNeural";
+var pollTimer=null;
+document.querySelectorAll(".voice-btn").forEach(function(btn){
+btn.addEventListener("click",function(){
+document.querySelectorAll(".voice-btn").forEach(function(b){b.classList.remove("active")});
+btn.classList.add("active");
+selectedVoice=btn.dataset.v;
+});
+});
+function generate(){
+var title=document.getElementById("title").value.trim();
+var text=document.getElementById("story").value.trim();
+if(!text){alert("Please write a story first!");return}
+document.getElementById("genBtn").disabled=true;
+document.getElementById("genBtn").textContent="Generating...";
+document.getElementById("progress").classList.add("show");
+document.getElementById("result").classList.remove("show");
+document.getElementById("progFill").style.width="5%";
+document.getElementById("progText").textContent="Sending to server...";
+fetch(API+"/api/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({title:title,text:text,voice:selectedVoice})}).then(function(r){return r.json()}).then(function(data){
+if(data.job_id){pollStatus(data.job_id,data.scenes)}
+else{alert("Error: "+JSON.stringify(data));resetBtn()}
+}).catch(function(e){alert("Connection error. API may be offline.");resetBtn()});
+}
+function pollStatus(jobId,totalScenes){
+pollTimer=setInterval(function(){
+fetch(API+"/status/"+jobId).then(function(r){return r.json()}).then(function(data){
+if(data.status==="generating"){
+var parts=(data.progress||"0/1").split("/");
+var pct=Math.round((parseInt(parts[0])/parseInt(parts[1]))*90)+5;
+document.getElementById("progFill").style.width=pct+"%";
+document.getElementById("progText").textContent="Generating scene "+data.progress+"...";
+}else if(data.status==="done"){
+clearInterval(pollTimer);
+document.getElementById("progFill").style.width="100%";
+document.getElementById("progText").textContent="Done!";
+document.getElementById("result").classList.add("show");
+document.getElementById("resultInfo").textContent="Size: "+data.size+" MB";
+document.getElementById("dlBtn").href=API+data.url;
+resetBtn();loadHistory();
+}else if(data.status==="error"){
+clearInterval(pollTimer);
+alert("Error: "+data.error);resetBtn();
+}
+}).catch(function(){});
+},2000);
+}
+function resetBtn(){
+document.getElementById("genBtn").disabled=false;
+document.getElementById("genBtn").textContent="Generate Video";
+}
+function loadHistory(){
+fetch(API+"/api/stories/list").then(function(r){return r.json()}).then(function(data){
+var grid=document.getElementById("vidGrid");grid.innerHTML="";
+if(data.videos&&data.videos.length>0){
+data.videos.forEach(function(v){
+var card=document.createElement("div");card.className="vid-card";
+card.innerHTML='<div class="name">'+v.replace(/_/g," ").replace(".mp4","")+'</div><a href="'+API+'/download/'+v+'" download>Download</a>';
+grid.appendChild(card);
+});
+}else{grid.innerHTML='<p style="color:var(--t3);font-size:12px">No videos yet</p>'}
+}).catch(function(){document.getElementById("vidGrid").innerHTML='<p style="color:var(--t3);font-size:12px">API offline</p>'});
+}
+loadHistory();
+</script>
+</body>
+</html>
