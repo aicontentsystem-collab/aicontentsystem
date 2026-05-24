@@ -3,837 +3,764 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEET AI Société — Autonomous AI Business Systems</title>
-<meta name="description" content="AI-powered autonomous business: algorithmic trading, content automation, accounting and tax compliance. Based in France.">
-<meta name="google-adsense-account" content="ca-pub-5033783482062814">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>ProxiServ Belfort — Services de proximité</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg-deep: #07080a;
-  --bg-surface: #0d0f13;
-  --bg-card: #12151b;
-  --bg-hover: #1a1e27;
-  --accent: #00e5a0;
-  --accent-dim: #00e5a020;
-  --accent-mid: #00e5a060;
-  --danger: #ff4757;
-  --warning: #ffa502;
-  --info: #3b82f6;
-  --text-1: #e8eaed;
-  --text-2: #9ca3af;
-  --text-3: #5a6170;
-  --border: #1e2330;
-  --mono: 'JetBrains Mono', monospace;
-  --sans: 'Outfit', sans-serif;
+  --noir: #0e0c0a;
+  --creme: #f7f3ec;
+  --beige: #ede8de;
+  --terre: #c4a882;
+  --orange: #e05c2a;
+  --vert: #2a6b4a;
+  --vert2: #d4ede0;
+  --bleu: #1e3a5f;
+  --mid: #b8b0a4;
+  --ghost: #8a8478;
+  --r: 14px;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  background: var(--bg-deep);
-  color: var(--text-1);
-  font-family: var(--sans);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-/* Grain overlay */
-body::before {
-  content: '';
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none; z-index: 9999;
-}
-
-/* Grid background */
-.grid-bg {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  background-image:
-    linear-gradient(var(--border) 1px, transparent 1px),
-    linear-gradient(90deg, var(--border) 1px, transparent 1px);
-  background-size: 60px 60px;
-  opacity: 0.15;
-  pointer-events: none;
-}
-
-/* Glow orb */
-.glow-orb {
-  position: fixed;
-  width: 600px; height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--accent-dim), transparent 70%);
-  top: -200px; right: -200px;
-  pointer-events: none;
-  animation: drift 20s ease-in-out infinite alternate;
-}
-@keyframes drift { to { transform: translate(-100px, 80px); } }
-
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--creme);color:var(--noir);overflow-x:hidden}
 
 /* NAV */
-nav {
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
-  position: sticky; top: 0;
-  background: var(--bg-deep);
-  z-index: 100;
-  backdrop-filter: blur(20px);
-  background: rgba(7,8,10,0.85);
-}
-nav .inner { display: flex; align-items: center; justify-content: space-between; }
-.logo {
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: -0.5px;
-}
-.logo span { color: var(--accent); }
-.nav-links { display: flex; gap: 32px; }
-.nav-links a {
-  color: var(--text-2);
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 400;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--accent); }
-.nav-status {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--mono); font-size: 12px; color: var(--accent);
-}
-.pulse {
-  width: 8px; height: 8px; border-radius: 50%; background: var(--accent);
-  animation: pulse 2s ease-in-out infinite;
-}
-@keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-mid); } 50% { opacity: 0.7; box-shadow: 0 0 0 8px transparent; } }
+nav{position:sticky;top:0;z-index:100;background:var(--creme);border-bottom:1px solid var(--beige);padding:0 48px;display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'Playfair Display',serif;font-weight:900;font-size:22px;letter-spacing:-0.5px;color:var(--noir)}
+.logo span{color:var(--orange)}
+.nav-right{display:flex;align-items:center;gap:8px}
+.nav-city{font-family:'DM Mono',monospace;font-size:11px;color:var(--ghost);padding:4px 12px;border:1px solid var(--mid);border-radius:100px}
+.nav-btn{background:var(--noir);color:var(--creme);border:none;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.nav-btn:hover{background:var(--orange)}
 
 /* HERO */
-.hero {
-  padding: 100px 0 80px;
-  text-align: center;
-}
-.hero-tag {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--accent);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 24px;
-  display: inline-block;
-  border: 1px solid var(--accent-mid);
-  padding: 6px 16px;
-  border-radius: 100px;
-}
-.hero h1 {
-  font-size: clamp(36px, 6vw, 72px);
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  margin-bottom: 24px;
-}
-.hero h1 em {
-  font-style: normal;
-  background: linear-gradient(135deg, var(--accent), #00b4d8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-.hero p {
-  color: var(--text-2);
-  font-size: 18px;
-  max-width: 600px;
-  margin: 0 auto 40px;
-  line-height: 1.6;
-}
+.hero{min-height:92vh;display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:1200px;margin:0 auto;padding:60px 48px;align-items:center}
+.hero-left{padding-right:60px}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--vert2);border:1px solid var(--vert);border-radius:100px;padding:5px 14px;font-size:12px;font-weight:500;color:var(--vert);margin-bottom:28px;font-family:'DM Mono',monospace}
+.hero-tag::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--vert)}
+.hero h1{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(42px,5vw,68px);line-height:1.0;letter-spacing:-2px;margin-bottom:24px}
+.hero h1 em{font-style:italic;color:var(--orange)}
+.hero-desc{font-size:17px;color:var(--ghost);line-height:1.75;max-width:460px;margin-bottom:36px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{background:var(--noir);color:var(--creme);border:none;border-radius:10px;padding:14px 28px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s;text-decoration:none;display:inline-block}
+.btn-primary:hover{background:var(--orange);transform:translateY(-2px)}
+.btn-outline{background:none;color:var(--noir);border:1.5px solid var(--noir);border-radius:10px;padding:14px 28px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;text-decoration:none;display:inline-block}
+.btn-outline:hover{background:var(--noir);color:var(--creme)}
+.hero-stats{display:flex;gap:32px}
+.hero-stat-val{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--noir)}
+.hero-stat-label{font-size:12px;color:var(--ghost);margin-top:2px}
 
-/* LIVE STATS */
-.stats-bar {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 1px;
-  background: var(--border);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  margin-bottom: 100px;
-}
-.stat {
-  background: var(--bg-card);
-  padding: 28px 24px;
-  text-align: center;
-  transition: background 0.2s;
-}
-.stat:hover { background: var(--bg-hover); }
-.stat-value {
-  font-family: var(--mono);
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--text-1);
-  margin-bottom: 4px;
-}
-.stat-value.green { color: var(--accent); }
-.stat-label {
-  font-size: 12px;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
+/* HERO RIGHT */
+.hero-right{position:relative}
+.services-stack{display:flex;flex-direction:column;gap:10px}
+.svc-card{background:white;border:1px solid var(--beige);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:16px;transition:all 0.2s;cursor:pointer;animation:floatIn 0.5s ease both}
+.svc-card:hover{border-color:var(--terre);transform:translateX(6px);box-shadow:0 8px 32px rgba(0,0,0,0.06)}
+.svc-card:nth-child(1){animation-delay:0.1s}
+.svc-card:nth-child(2){animation-delay:0.2s;margin-left:20px}
+.svc-card:nth-child(3){animation-delay:0.3s;margin-left:40px}
+.svc-card:nth-child(4){animation-delay:0.4s;margin-left:20px}
+.svc-card:nth-child(5){animation-delay:0.5s}
+.svc-card:nth-child(6){animation-delay:0.6s;margin-left:30px}
+@keyframes floatIn{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+.svc-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.svc-name{font-size:14px;font-weight:500;color:var(--noir)}
+.svc-price{font-family:'DM Mono',monospace;font-size:12px;color:var(--ghost);margin-top:2px}
+.svc-badge{margin-left:auto;font-size:10px;font-weight:600;padding:3px 8px;border-radius:100px;font-family:'DM Mono',monospace}
+.badge-pop{background:#fef3ec;color:var(--orange);border:1px solid #f5cdb4}
+.badge-new{background:var(--vert2);color:var(--vert);border:1px solid #b8dfc8}
 
-/* SECTIONS */
-section { margin-bottom: 100px; }
-.section-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.section-title {
-  font-size: 32px;
-  font-weight: 600;
-  margin-bottom: 16px;
-  letter-spacing: -1px;
-}
-.section-desc {
-  color: var(--text-2);
-  font-size: 16px;
-  max-width: 600px;
-  line-height: 1.6;
-  margin-bottom: 48px;
-}
+/* DIVIDER */
+.divider{height:1px;background:var(--beige);max-width:1200px;margin:0 auto}
 
-/* BOT CARDS */
-.bot-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 16px;
-}
-.bot-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 28px;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.bot-card:hover {
-  border-color: var(--accent-mid);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0,229,160,0.06);
-}
-.bot-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.bot-card:hover::before { opacity: 1; }
-.bot-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-.bot-name-group { display: flex; align-items: center; gap: 12px; }
-.bot-icon {
-  width: 40px; height: 40px;
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: 13px;
-}
-.bot-codename { font-family: var(--mono); font-size: 14px; font-weight: 600; }
-.bot-role { font-size: 13px; color: var(--text-2); }
-.badge {
-  font-family: var(--mono);
-  font-size: 10px;
-  padding: 4px 10px;
-  border-radius: 100px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.badge-live { background: rgba(0,229,160,0.12); color: var(--accent); }
-.badge-pending { background: rgba(255,165,2,0.12); color: var(--warning); }
-.badge-dev { background: rgba(59,130,246,0.12); color: var(--info); }
-.bot-desc {
-  color: var(--text-2);
-  font-size: 13px;
-  line-height: 1.6;
-  margin-bottom: 16px;
-}
-.bot-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.tech-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  padding: 3px 8px;
-  border-radius: 4px;
-  background: var(--bg-deep);
-  color: var(--text-3);
-  border: 1px solid var(--border);
-}
+/* SECTION */
+.section{padding:80px 48px;max-width:1200px;margin:0 auto}
+.section-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:11px;color:var(--ghost);border:1px solid var(--mid);border-radius:4px;padding:3px 10px;margin-bottom:16px;text-transform:uppercase;letter-spacing:0.6px}
+.section-title{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(32px,4vw,52px);letter-spacing:-1.5px;line-height:1.05;margin-bottom:16px}
+.section-title em{font-style:italic;color:var(--orange)}
+.section-desc{font-size:16px;color:var(--ghost);line-height:1.7;max-width:560px;margin-bottom:52px}
 
-/* ARCHITECTURE */
-.arch-flow {
-  display: flex;
-  align-items: stretch;
-  gap: 0;
-  overflow-x: auto;
-  padding: 20px 0;
-}
-.arch-node {
-  flex: 0 0 auto;
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
-  min-width: 160px;
-  text-align: center;
-  position: relative;
-}
-.arch-node::after {
-  content: '';
-  position: absolute;
-  right: -24px; top: 50%;
-  width: 24px; height: 2px;
-  background: var(--accent);
-}
-.arch-node:last-child::after { display: none; }
-.arch-node .node-title { font-family: var(--mono); font-size: 12px; font-weight: 600; margin-bottom: 4px; }
-.arch-node .node-sub { font-size: 11px; color: var(--text-3); }
+/* SERVICES GRID */
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.service-card{background:white;border:1px solid var(--beige);border-radius:20px;padding:28px;transition:all 0.2s;cursor:pointer;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;opacity:0;transition:opacity 0.2s}
+.service-card:hover{border-color:var(--terre);transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.08)}
+.service-card:hover::before{opacity:1}
+.sc-icon{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:16px;border:1px solid var(--beige)}
+.sc-name{font-family:'Playfair Display',serif;font-weight:700;font-size:18px;margin-bottom:8px}
+.sc-desc{font-size:13px;color:var(--ghost);line-height:1.6;margin-bottom:16px}
+.sc-bottom{display:flex;align-items:center;justify-content:space-between}
+.sc-rate{font-family:'DM Mono',monospace;font-size:12px;color:var(--orange);font-weight:500}
+.sc-providers{font-size:12px;color:var(--ghost)}
+.sc-arrow{color:var(--mid);font-size:18px;transition:transform 0.2s}
+.service-card:hover .sc-arrow{transform:translateX(4px);color:var(--orange)}
 
-/* REVENUE TABLE */
-.rev-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-.rev-table th, .rev-table td {
-  padding: 16px 20px;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-  font-size: 14px;
-}
-.rev-table th {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--text-3);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 500;
-}
-.rev-table td { color: var(--text-2); }
-.rev-table .amount { font-family: var(--mono); color: var(--accent); font-weight: 500; }
-.rev-table tr:hover td { color: var(--text-1); }
-.rev-bar-container { width: 100%; height: 6px; background: var(--bg-deep); border-radius: 3px; overflow: hidden; }
-.rev-bar-fill { height: 100%; border-radius: 3px; transition: width 1s ease; }
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.how-step{text-align:center;padding:32px 24px}
+.how-num{font-family:'Playfair Display',serif;font-size:64px;font-weight:900;color:var(--beige);line-height:1;margin-bottom:16px}
+.how-icon{font-size:36px;margin-bottom:16px;display:block}
+.how-title{font-family:'Playfair Display',serif;font-weight:700;font-size:20px;margin-bottom:10px}
+.how-desc{font-size:14px;color:var(--ghost);line-height:1.7}
 
-/* LEGAL TIMELINE */
-.timeline { position: relative; padding-left: 32px; }
-.timeline::before {
-  content: '';
-  position: absolute;
-  left: 7px; top: 0;
-  width: 1px; height: 100%;
-  background: var(--border);
-}
-.tl-item { margin-bottom: 32px; position: relative; }
-.tl-dot {
-  position: absolute;
-  left: -32px; top: 4px;
-  width: 15px; height: 15px;
-  border-radius: 50%;
-  border: 2px solid var(--accent);
-  background: var(--bg-deep);
-}
-.tl-item.done .tl-dot { background: var(--accent); }
-.tl-title { font-weight: 500; font-size: 15px; margin-bottom: 4px; }
-.tl-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
-.tl-tag {
-  display: inline-block;
-  font-family: var(--mono);
-  font-size: 10px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-top: 8px;
-}
-.tl-tag.required { background: rgba(255,71,87,0.12); color: var(--danger); }
-.tl-tag.optional { background: rgba(59,130,246,0.12); color: var(--info); }
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.price-card{border-radius:20px;padding:32px;border:1px solid var(--beige)}
+.price-card.featured{background:var(--noir);color:var(--creme);border-color:var(--noir)}
+.price-tag{font-family:'DM Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:12px}
+.price-card.featured .price-tag{color:var(--terre)}
+.price-tag:not(.featured .price-tag){color:var(--ghost)}
+.price-name{font-family:'Playfair Display',serif;font-weight:700;font-size:22px;margin-bottom:20px}
+.price-amount{font-family:'Playfair Display',serif;font-weight:900;font-size:48px;letter-spacing:-2px;line-height:1;margin-bottom:4px}
+.price-period{font-size:14px;color:var(--ghost);margin-bottom:28px}
+.price-card.featured .price-period{color:var(--mid)}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.price-features li{font-size:13px;display:flex;align-items:center;gap:8px}
+.price-features li::before{content:'✓';font-weight:700;color:var(--vert);flex-shrink:0}
+.price-card.featured .price-features li{color:rgba(247,243,236,0.85)}
+.price-card.featured .price-features li::before{color:var(--terre)}
+.price-cta{width:100%;padding:12px;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;border:none}
+.price-cta-outline{background:none;border:1.5px solid var(--mid);color:var(--noir)}
+.price-cta-outline:hover{border-color:var(--noir)}
+.price-cta-dark{background:var(--orange);color:white}
+.price-cta-dark:hover{background:#c44e20}
+.price-cta-light{background:white;color:var(--noir)}
+.price-cta-light:hover{background:var(--creme)}
 
-/* TAX CALENDAR */
-.cal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 12px;
-}
-.cal-item {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 20px;
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-  transition: border-color 0.2s;
-}
-.cal-item:hover { border-color: var(--accent-mid); }
-.cal-month {
-  font-family: var(--mono);
-  font-weight: 700;
-  font-size: 11px;
-  color: var(--accent);
-  background: var(--accent-dim);
-  padding: 6px 10px;
-  border-radius: 6px;
-  white-space: nowrap;
-}
-.cal-name { font-size: 13px; font-weight: 500; margin-bottom: 3px; }
-.cal-form { font-family: var(--mono); font-size: 11px; color: var(--text-3); }
+/* TRUST */
+.trust-bar{background:var(--noir);border-radius:20px;padding:48px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center;margin-top:52px}
+.trust-val{font-family:'Playfair Display',serif;font-weight:900;font-size:40px;color:var(--creme);letter-spacing:-1px}
+.trust-label{font-size:13px;color:var(--mid);margin-top:4px}
+
+/* BOOKING DEMO */
+.booking-demo{background:white;border:1px solid var(--beige);border-radius:24px;padding:40px;max-width:600px;margin:0 auto}
+.booking-title{font-family:'Playfair Display',serif;font-weight:700;font-size:24px;margin-bottom:24px;text-align:center}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-group{margin-bottom:12px}
+.form-label{display:block;font-size:12px;font-weight:500;color:var(--ghost);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.4px;font-family:'DM Mono',monospace}
+.form-input,.form-select{width:100%;background:var(--creme);border:1.5px solid var(--beige);border-radius:10px;padding:11px 14px;font-size:14px;color:var(--noir);font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.15s}
+.form-input:focus,.form-select:focus{border-color:var(--orange)}
+.form-select option{background:white}
+.booking-total{background:var(--creme);border-radius:12px;padding:16px 20px;margin:16px 0;display:flex;justify-content:space-between;align-items:center}
+.booking-total-label{font-size:14px;color:var(--ghost)}
+.booking-total-val{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--noir)}
+.booking-commission{font-size:12px;color:var(--vert);font-family:'DM Mono',monospace;margin-top:2px}
+.btn-book{width:100%;background:var(--orange);color:white;border:none;border-radius:12px;padding:16px;font-size:15px;font-weight:500;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.15s;margin-top:8px}
+.btn-book:hover{background:#c44e20;transform:translateY(-1px)}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.testi-card{background:white;border:1px solid var(--beige);border-radius:16px;padding:24px}
+.testi-stars{color:#f5a623;font-size:14px;margin-bottom:12px;letter-spacing:2px}
+.testi-text{font-size:14px;color:var(--ghost);line-height:1.7;margin-bottom:16px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:10px}
+.testi-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;background:var(--beige)}
+.testi-name{font-size:13px;font-weight:500}
+.testi-role{font-size:12px;color:var(--ghost)}
+
+/* PROVIDER CTA */
+.provider-cta{background:linear-gradient(135deg,var(--bleu) 0%,#0d2238 100%);border-radius:24px;padding:64px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.provider-cta h2{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(28px,3vw,44px);color:var(--creme);letter-spacing:-1px;line-height:1.1;margin-bottom:16px}
+.provider-cta p{font-size:16px;color:rgba(247,243,236,0.7);line-height:1.7;margin-bottom:32px}
+.provider-earnings{display:flex;flex-direction:column;gap:12px}
+.earning-row{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.12);border-radius:12px;padding:16px 20px;display:flex;justify-content:space-between;align-items:center}
+.earning-service{font-size:14px;color:rgba(247,243,236,0.8)}
+.earning-amount{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--terre)}
+.earning-period{font-size:11px;color:rgba(247,243,236,0.5);font-family:'DM Mono',monospace}
 
 /* FOOTER */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 40px 0;
-  text-align: center;
-}
-footer p { font-size: 13px; color: var(--text-3); }
-footer a { color: var(--accent); text-decoration: none; }
+footer{background:var(--noir);color:var(--creme);padding:48px;margin-top:80px}
+.footer-grid{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.1)}
+.footer-logo{font-family:'Playfair Display',serif;font-weight:900;font-size:24px;margin-bottom:12px}
+.footer-logo span{color:var(--orange)}
+.footer-desc{font-size:14px;color:var(--mid);line-height:1.7;max-width:280px}
+.footer-heading{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;color:var(--terre);margin-bottom:16px;font-family:'DM Mono',monospace}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:13px;color:var(--mid);text-decoration:none;transition:color 0.15s}
+.footer-links a:hover{color:var(--creme)}
+.footer-bottom{max-width:1200px;margin:0 auto;padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--mid)}
 
-/* MOBILE */
-@media (max-width: 768px) {
-  .nav-links { display: none; }
-  .bot-grid { grid-template-columns: 1fr; }
-  .stats-bar { grid-template-columns: repeat(2, 1fr); }
-  .hero h1 { font-size: 32px; letter-spacing: -1px; }
-}
+/* TABS */
+.tab-row{display:flex;gap:8px;margin-bottom:32px}
+.tab-btn{padding:8px 18px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid var(--mid);background:none;color:var(--ghost);font-family:'DM Sans',sans-serif;transition:all 0.15s}
+.tab-btn.active{background:var(--noir);color:var(--creme);border-color:var(--noir)}
 
-/* ANIMATIONS */
-.fade-up {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.fade-up.visible {
-  opacity: 1;
-  transform: translateY(0);
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(14,12,10,0.7);z-index:200;display:none;align-items:center;justify-content:center;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--creme);border-radius:24px;padding:40px;max-width:480px;width:90%;max-height:90vh;overflow-y:auto}
+.modal-title{font-family:'Playfair Display',serif;font-weight:700;font-size:26px;margin-bottom:8px}
+.modal-sub{font-size:14px;color:var(--ghost);margin-bottom:28px}
+.modal-close{position:absolute;top:20px;right:24px;background:none;border:none;font-size:24px;cursor:pointer;color:var(--ghost)}
+.success-msg{background:var(--vert2);border:1px solid var(--vert);border-radius:12px;padding:16px 20px;font-size:14px;color:var(--vert);margin-top:12px;display:none;text-align:center}
+
+@media(max-width:768px){
+  .hero{grid-template-columns:1fr;padding:40px 24px}
+  .hero-left{padding-right:0;margin-bottom:40px}
+  .hero-right{display:none}
+  .section{padding:60px 24px}
+  nav{padding:0 24px}
+  .how-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:1fr}
+  .provider-cta{grid-template-columns:1fr;padding:32px}
+  .footer-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
-<div class="grid-bg"></div>
-<div class="glow-orb"></div>
-
 <nav>
-  <div class="container inner">
-    <div class="logo">NEET<span>.</span>AI</div>
-    <div class="nav-links">
-      <a href="#bots">Bots</a>
-      <a href="#revenue">Revenue</a>
-      <a href="#legal">Legal</a>
-      <a href="#tax">Fiscalité</a>
-      <a href="terms.html">Mentions légales</a>
-      <a href="privacy.html">Confidentialité</a>
-    </div>
-    <div class="nav-status"><div class="pulse"></div> Systems online</div>
+  <div class="logo">Proxi<span>Serv</span></div>
+  <div class="nav-right">
+    <span class="nav-city">📍 Belfort 90000</span>
+    <button class="nav-btn" onclick="openModal('provider')">Devenir prestataire</button>
   </div>
 </nav>
 
-<div class="container">
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Lancé à Belfort · Territoire de Belfort</div>
+    <h1>Les services dont<br>vous avez besoin,<br><em>près de chez vous.</em></h1>
+    <p class="hero-desc">ProxiServ connecte les habitants de Belfort avec des prestataires locaux vérifiés — garde d'animaux, ménage, baby-sitting, cours particuliers et bien plus.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Réserver un service</a>
+      <a href="#devenir-prestataire" class="btn-outline">Gagner de l'argent</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-val">0€</div>
+        <div class="hero-stat-label">Pour les clients</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">15%</div>
+        <div class="hero-stat-label">Commission seulement</div>
+      </div>
+      <div>
+        <div class="hero-stat-val">24h</div>
+        <div class="hero-stat-label">Mise en relation</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="services-stack">
+      <div class="svc-card" onclick="openModal('booking')">
+        <div class="svc-icon" style="background:#fff8f0">🐕</div>
+        <div>
+          <div class="svc-name">Garde de chien</div>
+          <div class="svc-price">à partir de 20€/jour</div>
+        </div>
+        <span class="svc-badge badge-pop">Populaire</span>
+      </div>
+      <div class="svc-card" onclick="openModal('booking')">
+        <div class="svc-icon" style="background:#f0f7ff">👶</div>
+        <div>
+          <div class="svc-name">Baby-sitting</div>
+          <div class="svc-price">à partir de 12€/heure</div>
+        </div>
+        <span class="svc-badge badge-pop">Populaire</span>
+      </div>
+      <div class="svc-card" onclick="openModal('booking')">
+        <div class="svc-icon" style="background:#f0fff4">🧹</div>
+        <div>
+          <div class="svc-name">Ménage à domicile</div>
+          <div class="svc-price">à partir de 18€/heure</div>
+        </div>
+        <span class="svc-badge badge-new">Nouveau</span>
+      </div>
+      <div class="svc-card" onclick="openModal('booking')">
+        <div class="svc-icon" style="background:#fff0f8">👴</div>
+        <div>
+          <div class="svc-name">Aide aux seniors</div>
+          <div class="svc-price">à partir de 15€/heure</div>
+        </div>
+        <span class="svc-badge badge-new">Nouveau</span>
+      </div>
+      <div class="svc-card" onclick="openModal('booking')">
+        <div class="svc-icon" style="background:#fffff0">📚</div>
+        <div>
+          <div class="svc-name">Cours particuliers</div>
+          <div class="svc-price">à partir de 25€/heure</div>
+        </div>
+      </div>
+      <div class="svc-card" onclick="openModal('booking')">
+        <div class="svc-icon" style="background:#f5f0ff">🔧</div>
+        <div>
+          <div class="svc-name">Petits travaux</div>
+          <div class="svc-price">à partir de 30€/intervention</div>
+        </div>
+        <span class="svc-badge badge-new">Nouveau</span>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <!-- HERO -->
-  <section class="hero fade-up">
-    <div class="hero-tag">SASU · France · AI-Powered</div>
-    <h1>Autonomous AI<br><em>Business Engine</em></h1>
-    <p>9 specialized bots generating revenue through algorithmic trading, content creation, and digital publishing — fully automated, fully compliant with French law.</p>
-  </section>
+<div class="divider"></div>
 
-  <!-- LIVE STATS -->
-  <div class="stats-bar fade-up" id="stats">
-    <div class="stat">
-      <div class="stat-value green" id="s-bots">9</div>
-      <div class="stat-label">Bot Fleet</div>
+<!-- SERVICES -->
+<div class="section" id="services">
+  <div class="section-tag">Nos services</div>
+  <h2 class="section-title">Tout ce dont<br><em>Belfort a besoin.</em></h2>
+  <p class="section-desc">Sept catégories de services, tous assurés et vérifiés. Réservez en quelques clics, payez en toute sécurité.</p>
+
+  <div class="services-grid">
+    <div class="service-card" style="border-top:3px solid #e05c2a" onclick="openModal('booking')">
+      <div class="sc-icon" style="background:#fff8f0">🐕</div>
+      <div class="sc-name">Garde d'animaux</div>
+      <div class="sc-desc">Garde à domicile, promenades quotidiennes, garderie de jour. Chiens, chats, lapins.</div>
+      <div class="sc-bottom">
+        <div>
+          <div class="sc-rate">20–45€/jour</div>
+          <div class="sc-providers">Commission 15%</div>
+        </div>
+        <span class="sc-arrow">→</span>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-value" id="s-streams">4</div>
-      <div class="stat-label">Revenue Streams</div>
+    <div class="service-card" style="border-top:3px solid #1e3a5f" onclick="openModal('booking')">
+      <div class="sc-icon" style="background:#f0f7ff">👶</div>
+      <div class="sc-name">Baby-sitting</div>
+      <div class="sc-desc">Garde d'enfants à domicile, sorties scolaires, aide aux devoirs pour les plus grands.</div>
+      <div class="sc-bottom">
+        <div>
+          <div class="sc-rate">12–18€/heure</div>
+          <div class="sc-providers">Commission 15%</div>
+        </div>
+        <span class="sc-arrow">→</span>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-value green" id="s-uptime">99.7%</div>
-      <div class="stat-label">Uptime</div>
+    <div class="service-card" style="border-top:3px solid #2a6b4a" onclick="openModal('booking')">
+      <div class="sc-icon" style="background:#f0fff4">🧹</div>
+      <div class="sc-name">Ménage à domicile</div>
+      <div class="sc-desc">Nettoyage régulier ou ponctuel, repassage, lavage de vitres, entretien général.</div>
+      <div class="sc-bottom">
+        <div>
+          <div class="sc-rate">18–25€/heure</div>
+          <div class="sc-providers">Commission 15%</div>
+        </div>
+        <span class="sc-arrow">→</span>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-value" id="s-posts">24+</div>
-      <div class="stat-label">Blog Posts</div>
+    <div class="service-card" style="border-top:3px solid #9b59b6" onclick="openModal('booking')">
+      <div class="sc-icon" style="background:#f8f0ff">👴</div>
+      <div class="sc-name">Aide aux seniors</div>
+      <div class="sc-desc">Compagnie, courses, accompagnement médical, aide administrative, repas à domicile.</div>
+      <div class="sc-bottom">
+        <div>
+          <div class="sc-rate">15–22€/heure</div>
+          <div class="sc-providers">Commission 12%</div>
+        </div>
+        <span class="sc-arrow">→</span>
+      </div>
     </div>
-    <div class="stat">
-      <div class="stat-value" id="s-trades">24/7</div>
-      <div class="stat-label">Trading Active</div>
+    <div class="service-card" style="border-top:3px solid #e6a817" onclick="openModal('booking')">
+      <div class="sc-icon" style="background:#fffff0">📚</div>
+      <div class="sc-name">Cours particuliers</div>
+      <div class="sc-desc">Maths, français, langues, préparation au bac. Enseignants et étudiants UTBM vérifiés.</div>
+      <div class="sc-bottom">
+        <div>
+          <div class="sc-rate">25–50€/heure</div>
+          <div class="sc-providers">Commission 15%</div>
+        </div>
+        <span class="sc-arrow">→</span>
+      </div>
+    </div>
+    <div class="service-card" style="border-top:3px solid #e05c2a" onclick="openModal('booking')">
+      <div class="sc-icon" style="background:#fff5f0">🔧</div>
+      <div class="sc-name">Petits travaux</div>
+      <div class="sc-desc">Montage de meubles, petite plomberie, peinture, jardinage, déménagement local.</div>
+      <div class="sc-bottom">
+        <div>
+          <div class="sc-rate">30–60€/heure</div>
+          <div class="sc-providers">Commission 10%</div>
+        </div>
+        <span class="sc-arrow">→</span>
+      </div>
+    </div>
+    <div class="service-card" style="border-top:3px solid #2a6b4a" onclick="openModal('booking')">
+      <div class="sc-icon" style="background:#f0fff4">🚗</div>
+      <div class="sc-name">Transport & courses</div>
+      <div class="sc-desc">Courses alimentaires, dépôts en déchetterie, accompagnement pour personnes sans véhicule.</div>
+      <div class="sc-bottom">
+        <div>
+          <div class="sc-rate">20–40€/trajet</div>
+          <div class="sc-providers">Commission 12%</div>
+        </div>
+        <span class="sc-arrow">→</span>
+      </div>
     </div>
   </div>
 
-  <!-- BOT FLEET -->
-  <section id="bots">
-    <div class="section-label fade-up">// Bot Fleet</div>
-    <h2 class="section-title fade-up">9 autonomous agents</h2>
-    <p class="section-desc fade-up">Each bot specializes in one task, communicating through a unified Telegram command center and shared database.</p>
+  <div class="trust-bar">
+    <div><div class="trust-val">0€</div><div class="trust-label">Inscription gratuite pour les clients</div></div>
+    <div><div class="trust-val">24h</div><div class="trust-label">Délai de mise en relation garanti</div></div>
+    <div><div class="trust-val">100%</div><div class="trust-label">Prestataires vérifiés et assurés</div></div>
+    <div><div class="trust-val">Belfort</div><div class="trust-label">Uniquement local, pas de déplacement lointain</div></div>
+  </div>
+</div>
 
-    <div class="bot-grid">
-      <div class="bot-card fade-up">
-        <div class="bot-header">
-          <div class="bot-name-group">
-            <div class="bot-icon" style="background:rgba(255,71,87,0.12);color:var(--danger);">AT</div>
-            <div><a href="atlas.html" style="text-decoration:none;color:inherit"><div class="bot-codename">ATLAS LION BOT</div><div class="bot-role">Multi-Symbol AI Trading Engine — Click for live dashboard</div></a></div>
-          </div>
-          <span class="badge badge-live">Live</span>
-        </div>
-        <p class="bot-desc">1-second analysis engine via Binance WebSocket. Trades XRP/USDT perpetual futures on KuCoin with 10x leverage. Kelly Criterion position sizing, whale detection, liquidity mapping.</p>
-        <div class="bot-tech">
-          <span class="tech-tag">WebSocket</span>
-          <span class="tech-tag">KuCoin API</span>
-          <span class="tech-tag">XRPL</span>
-          <span class="tech-tag">Kelly</span>
-          <span class="tech-tag">SQLite</span>
-        </div>
+<div class="divider"></div>
+
+<!-- HOW IT WORKS -->
+<div class="section" id="comment-ca-marche">
+  <div class="section-tag">Comment ça marche</div>
+  <h2 class="section-title">Réserver en<br><em>3 étapes simples.</em></h2>
+  <div class="how-grid">
+    <div class="how-step">
+      <div class="how-num">01</div>
+      <span class="how-icon">🔍</span>
+      <div class="how-title">Choisissez votre service</div>
+      <div class="how-desc">Sélectionnez le type de service, vos disponibilités et votre quartier à Belfort. Consultez les profils et les avis des prestataires.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">02</div>
+      <span class="how-icon">📱</span>
+      <div class="how-title">Mettez en relation</div>
+      <div class="how-desc">ProxiServ vous met en contact avec les prestataires disponibles dans votre secteur sous 24 heures. Échangez directement avant de confirmer.</div>
+    </div>
+    <div class="how-step">
+      <div class="how-num">03</div>
+      <span class="how-icon">✅</span>
+      <div class="how-title">Payez en sécurité</div>
+      <div class="how-desc">Le paiement est sécurisé et n'est libéré qu'après confirmation du service. Laissez un avis pour aider la communauté.</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- BOOKING DEMO -->
+<div class="section" id="reserver">
+  <div class="section-tag">Réservation rapide</div>
+  <h2 class="section-title" style="text-align:center"><em>Essayez</em> maintenant.</h2>
+  <p class="section-desc" style="text-align:center;margin:0 auto 40px">Simulation de réservation — voyez exactement comment fonctionne la plateforme.</p>
+
+  <div class="booking-demo">
+    <div class="booking-title">📋 Nouvelle réservation</div>
+    <div class="form-group">
+      <label class="form-label">Type de service</label>
+      <select class="form-select" id="bookService" onchange="updatePrice()">
+        <option value="20">🐕 Garde de chien — 20€/jour</option>
+        <option value="12">👶 Baby-sitting — 12€/heure</option>
+        <option value="18">🧹 Ménage à domicile — 18€/heure</option>
+        <option value="15">👴 Aide aux seniors — 15€/heure</option>
+        <option value="25">📚 Cours particuliers — 25€/heure</option>
+        <option value="30">🔧 Petits travaux — 30€/heure</option>
+        <option value="20">🚗 Transport & courses — 20€/trajet</option>
+      </select>
+    </div>
+    <div class="form-row">
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Date souhaitée</label>
+        <input type="date" class="form-input" id="bookDate">
       </div>
-
-      <div class="bot-card fade-up">
-        <div class="bot-header">
-          <div class="bot-name-group">
-            <div class="bot-icon" style="background:rgba(59,130,246,0.12);color:var(--info);">SC</div>
-            <div><div class="bot-codename">SCOUT</div><div class="bot-role">Trend Finder</div></div>
-          </div>
-          <span class="badge badge-live">Live</span>
-        </div>
-        <p class="bot-desc">Discovers trending Creative Commons videos on YouTube by niche and day. AI-powered ranking with Claude to select the most viral-worthy content for repurposing.</p>
-        <div class="bot-tech">
-          <span class="tech-tag">YouTube API v3</span>
-          <span class="tech-tag">Claude AI</span>
-          <span class="tech-tag">CC License</span>
-        </div>
-      </div>
-
-      <div class="bot-card fade-up">
-        <div class="bot-header">
-          <div class="bot-name-group">
-            <div class="bot-icon" style="background:rgba(0,229,160,0.12);color:var(--accent);">NX</div>
-            <div><div class="bot-codename">NEXUS</div><div class="bot-role">Compliance Agent</div></div>
-          </div>
-          <span class="badge badge-live">Live</span>
-        </div>
-        <p class="bot-desc">4-layer compliance checker: YouTube license verification, channel reputation, content policy flags, and Claude-powered legal risk assessment. Scores 0-100.</p>
-        <div class="bot-tech">
-          <span class="tech-tag">Copyright Check</span>
-          <span class="tech-tag">AI Risk Score</span>
-          <span class="tech-tag">CC Validator</span>
-        </div>
-      </div>
-
-      <div class="bot-card fade-up">
-        <div class="bot-header">
-          <div class="bot-name-group">
-            <div class="bot-icon" style="background:rgba(139,92,246,0.12);color:#8b5cf6;">IR</div>
-            <div><div class="bot-codename">IRIS</div><div class="bot-role">Clip Selector</div></div>
-          </div>
-          <span class="badge badge-live">Live</span>
-        </div>
-        <p class="bot-desc">Claude-powered clip selection engine. Analyzes transcripts to find the most viral 20-55 second segments with hooks, emotional arcs, and natural conclusions.</p>
-        <div class="bot-tech">
-          <span class="tech-tag">Claude Sonnet</span>
-          <span class="tech-tag">Whisper</span>
-          <span class="tech-tag">NLP</span>
-        </div>
-      </div>
-
-      <div class="bot-card fade-up">
-        <div class="bot-header">
-          <div class="bot-name-group">
-            <div class="bot-icon" style="background:rgba(255,165,2,0.12);color:var(--warning);">FG</div>
-            <div><div class="bot-codename">FORGE</div><div class="bot-role">Video Editor</div></div>
-          </div>
-          <span class="badge badge-live">Live</span>
-        </div>
-        <p class="bot-desc">Automated FFmpeg pipeline: extracts clips, converts to 9:16 vertical (1080x1920), burns French subtitles at bottom, adds color-coded hook overlays.</p>
-        <div class="bot-tech">
-          <span class="tech-tag">FFmpeg</span>
-          <span class="tech-tag">H.264</span>
-          <span class="tech-tag">9:16</span>
-          <span class="tech-tag">SRT</span>
-        </div>
-      </div>
-
-      <div class="bot-card fade-up">
-        <div class="bot-header">
-          <div class="bot-name-group">
-            <div class="bot-icon" style="background:rgba(0,229,160,0.12);color:var(--accent);">HM</div>
-            <div><div class="bot-codename">HERMES</div><div class="bot-role">Publisher</div></div>
-          </div>
-          <span class="badge badge-pending">Pending API</span>
-        </div>
-        <p class="bot-desc">Manages TikTok Content Posting API uploads and YouTube Shorts cross-posting. Queue system for videos while awaiting API approval.</p>
-        <div class="bot-tech">
-          <span class="tech-tag">TikTok API</span>
-          <span class="tech-tag">YouTube API</span>
-          <span class="tech-tag">Queue</span>
-        </div>
-      </div>
-
-      <div class="bot-card fade-up">
-        <div class="bot-header">
-          <div class="bot-name-group">
-            <div class="bot-icon" style="background:rgba(59,130,246,0.12);color:var(--info);">EC</div>
-            <div><div class="bot-codename">ECHO</div><div class="bot-role">Blog Writer</div></div>
-          </div>
-          <span class="badge badge-live">Live</span>
-        </div>
-        <p class="bot-desc">Generates 1000-word SEO blog posts from video transcripts using Claude. Auto-publishes to WordPress with AdSense integration and affiliate links.</p>
-        <div class="bot-tech">
-          <span class="tech-tag">Claude AI</span>
-          <span class="tech-tag">WordPress</span>
-          <span class="tech-tag">SEO</span>
-          <span class="tech-tag">AdSense</span>
-        </div>
-      </div>
-
-      <div class="bot-card fade-up">
-        <div class="bot-header">
-          <div class="bot-name-group">
-            <div class="bot-icon" style="background:rgba(255,165,2,0.12);color:var(--warning);">LG</div>
-            <div><div class="bot-codename">LEDGER</div><div class="bot-role">Accounting Bot</div></div>
-          </div>
-          <span class="badge badge-dev">In dev</span>
-        </div>
-        <p class="bot-desc">Automated accounting for French SASU. Tracks revenue/expenses across all bots, generates invoices, livre des recettes, and monthly P&L reports.</p>
-        <div class="bot-tech">
-          <span class="tech-tag">SQLite</span>
-          <span class="tech-tag">PDF Gen</span>
-          <span class="tech-tag">SASU</span>
-          <span class="tech-tag">EUR</span>
-        </div>
-      </div>
-
-      <div class="bot-card fade-up">
-        <div class="bot-header">
-          <div class="bot-name-group">
-            <div class="bot-icon" style="background:rgba(255,71,87,0.12);color:var(--danger);">FI</div>
-            <div><div class="bot-codename">FISC</div><div class="bot-role">Tax Compliance</div></div>
-          </div>
-          <span class="badge badge-dev">In dev</span>
-        </div>
-        <p class="bot-desc">French tax obligation tracker. Monitors IS, TVA, CFE deadlines. Auto-generates Cerfa form data. Manages foreign account declarations (3916-bis).</p>
-        <div class="bot-tech">
-          <span class="tech-tag">IS 15%/25%</span>
-          <span class="tech-tag">TVA</span>
-          <span class="tech-tag">CFE</span>
-          <span class="tech-tag">Cerfa</span>
-        </div>
+      <div class="form-group" style="margin:0">
+        <label class="form-label">Durée</label>
+        <select class="form-select" id="bookDuration" onchange="updatePrice()">
+          <option value="1">1 heure / 1 jour</option>
+          <option value="2">2 heures / 2 jours</option>
+          <option value="3">3 heures / 3 jours</option>
+          <option value="4">4 heures / 4 jours</option>
+          <option value="5">5 heures / 5 jours</option>
+        </select>
       </div>
     </div>
-  </section>
-
-  <!-- REVENUE -->
-  <section id="revenue">
-    <div class="section-label fade-up">// Revenue Model</div>
-    <h2 class="section-title fade-up">4 revenue streams</h2>
-    <p class="section-desc fade-up">Diversified income from trading profits, content monetization, advertising, and affiliate partnerships.</p>
-
-    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;overflow:hidden;" class="fade-up">
-      <table class="rev-table">
-        <thead>
-          <tr>
-            <th>Stream</th>
-            <th>Source</th>
-            <th>Month 1-2</th>
-            <th>Month 3-4</th>
-            <th>Month 5+</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td style="color:var(--text-1);font-weight:500;">XRP Trading</td>
-            <td>KuCoin Futures (ATLAS)</td>
-            <td class="amount">0–100€</td>
-            <td class="amount">100–400€</td>
-            <td class="amount">200–800€</td>
-            <td><span class="badge badge-live">Live</span></td>
-          </tr>
-          <tr>
-            <td style="color:var(--text-1);font-weight:500;">TikTok</td>
-            <td>Creator Fund (HERMES)</td>
-            <td class="amount">0€</td>
-            <td class="amount">20–80€</td>
-            <td class="amount">80–300€</td>
-            <td><span class="badge badge-pending">Pending</span></td>
-          </tr>
-          <tr>
-            <td style="color:var(--text-1);font-weight:500;">AdSense</td>
-            <td>Blog + Website (ECHO)</td>
-            <td class="amount">0–10€</td>
-            <td class="amount">10–50€</td>
-            <td class="amount">50–200€</td>
-            <td><span class="badge badge-pending">Review</span></td>
-          </tr>
-          <tr>
-            <td style="color:var(--text-1);font-weight:500;">Affiliates</td>
-            <td>Blog CTAs (ECHO)</td>
-            <td class="amount">0€</td>
-            <td class="amount">0–20€</td>
-            <td class="amount">100–500€</td>
-            <td><span class="badge badge-dev">Planned</span></td>
-          </tr>
-          <tr style="border-top:2px solid var(--accent-dim);">
-            <td style="color:var(--accent);font-weight:600;">Total</td>
-            <td></td>
-            <td class="amount" style="color:var(--accent)">0–110€</td>
-            <td class="amount" style="color:var(--accent)">130–550€</td>
-            <td class="amount" style="color:var(--accent)">430–1,800€</td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="form-group">
+      <label class="form-label">Votre adresse à Belfort</label>
+      <input type="text" class="form-input" placeholder="Ex: 12 rue de la République, Belfort">
     </div>
-  </section>
+    <div class="booking-total">
+      <div>
+        <div class="booking-total-label">Total estimé</div>
+        <div class="booking-commission" id="commissionLine">dont 3€ de commission ProxiServ</div>
+      </div>
+      <div class="booking-total-val" id="totalPrice">20€</div>
+    </div>
+    <button class="btn-book" onclick="openModal('booking')">Trouver un prestataire disponible →</button>
+  </div>
+</div>
 
-  <!-- LEGAL -->
-  <section id="legal">
-    <div class="section-label fade-up">// Structure Juridique</div>
-    <h2 class="section-title fade-up">SASU — France</h2>
-    <p class="section-desc fade-up">Société par Actions Simplifiée Unipersonnelle. Responsabilité limitée, fiscalité IS, flexibilité maximale.</p>
+<div class="divider"></div>
 
-    <div class="timeline fade-up">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-title">Rédaction des statuts</div>
-        <div class="tl-desc">Dénomination, objet social (IA, trading algorithmique, contenu numérique), capital 1-500€, nomination du Président.</div>
-        <span class="tl-tag required">Obligatoire</span>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-title">Dépôt de capital</div>
-        <div class="tl-desc">Ouverture d'un compte de dépôt (Qonto, Shine, BoursoBank Pro). Obtention de l'attestation de dépôt des fonds.</div>
-        <span class="tl-tag required">Obligatoire</span>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-title">Publication annonce légale</div>
-        <div class="tl-desc">Journal d'annonces légales (JAL). Coût: ~180€. Mention de la création de la SASU.</div>
-        <span class="tl-tag required">Obligatoire — ~180€</span>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-title">Immatriculation Guichet Unique</div>
-        <div class="tl-desc">formalites.entreprises.gouv.fr — Statuts, attestation dépôt, pièce d'identité, déclaration non-condamnation. Coût greffe: ~40€.</div>
-        <span class="tl-tag required">Obligatoire — ~40€</span>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-title">Obtention SIRET/SIREN</div>
-        <div class="tl-desc">Attribution automatique par INSEE sous 1-2 semaines. Réception du K-bis.</div>
-        <span class="tl-tag required">Automatique</span>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-title">Déclaration comptes étrangers</div>
-        <div class="tl-desc">Formulaire 3916-bis pour KuCoin (Seychelles) et Google AdSense (Irlande). Obligatoire chaque année.</div>
-        <span class="tl-tag required">Obligatoire</span>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-title">Déclaration ACPR/AMF (crypto)</div>
-        <div class="tl-desc">Vérifier si le trading algorithmique nécessite un enregistrement PSAN auprès de l'AMF.</div>
-        <span class="tl-tag optional">À vérifier</span>
+<!-- PRICING -->
+<div class="section" id="tarifs">
+  <div class="section-tag">Tarifs prestataires</div>
+  <h2 class="section-title">Transparent.<br><em>Rentable.</em> Simple.</h2>
+  <p class="section-desc">Pour les clients, ProxiServ est 100% gratuit. Pour les prestataires, choisissez la formule adaptée à votre activité.</p>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-tag">Débutant</div>
+      <div class="price-name">Commission seule</div>
+      <div class="price-amount">0€</div>
+      <div class="price-period">par mois + 20% par mission</div>
+      <ul class="price-features">
+        <li>Profil visible sur la plateforme</li>
+        <li>Jusqu'à 5 missions/mois</li>
+        <li>Paiement sécurisé garanti</li>
+        <li>Support par email</li>
+      </ul>
+      <button class="price-cta price-cta-outline" onclick="openModal('provider')">Commencer gratuitement</button>
+    </div>
+    <div class="price-card featured">
+      <div class="price-tag">Recommandé</div>
+      <div class="price-name">Professionnel</div>
+      <div class="price-amount" style="color:var(--terre)">29€</div>
+      <div class="price-period">par mois + 15% par mission</div>
+      <ul class="price-features">
+        <li>Profil mis en avant dans les résultats</li>
+        <li>Missions illimitées</li>
+        <li>Badge "Vérifié ProxiServ"</li>
+        <li>Statistiques de performance</li>
+        <li>Support prioritaire</li>
+        <li>Accès aux clients premium</li>
+      </ul>
+      <button class="price-cta price-cta-dark" onclick="openModal('provider')">S'inscrire maintenant</button>
+    </div>
+    <div class="price-card">
+      <div class="price-tag">Expert</div>
+      <div class="price-name">Business</div>
+      <div class="price-amount">59€</div>
+      <div class="price-period">par mois + 10% par mission</div>
+      <ul class="price-features">
+        <li>Tout du plan Professionnel</li>
+        <li>Commission réduite à 10%</li>
+        <li>Profil en tête de liste</li>
+        <li>Plusieurs prestataires sous un compte</li>
+        <li>Facturation automatique</li>
+        <li>Manager dédié</li>
+      </ul>
+      <button class="price-cta price-cta-outline" onclick="openModal('provider')">Contacter pour démarrer</button>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- TESTIMONIALS -->
+<div class="section">
+  <div class="section-tag">Témoignages</div>
+  <h2 class="section-title">Ce que dit<br><em>Belfort.</em></h2>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"J'ai trouvé une super garde pour mon labrador en moins de 2 heures. Le service est nickel et le prestataire habite à 5 minutes de chez moi."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">👩</div>
+        <div><div class="testi-name">Marie-Claire B.</div><div class="testi-role">Cliente · Les Résidences</div></div>
       </div>
     </div>
-  </section>
-
-  <!-- TAX CALENDAR -->
-  <section id="tax">
-    <div class="section-label fade-up">// Calendrier Fiscal</div>
-    <h2 class="section-title fade-up">Obligations fiscales</h2>
-    <p class="section-desc fade-up">IS à 15% sur les premiers 42 500€ de bénéfice (25% au-delà). TVA en franchise de base si CA &lt; 36 800€/an.</p>
-
-    <div class="cal-grid fade-up">
-      <div class="cal-item">
-        <div class="cal-month">JAN</div>
-        <div><div class="cal-name">Acompte IS T4 (solde)</div><div class="cal-form">Formulaire 3514</div></div>
-      </div>
-      <div class="cal-item">
-        <div class="cal-month">FÉV</div>
-        <div><div class="cal-name">Déclaration DAS2</div><div class="cal-form">Honoraires versés</div></div>
-      </div>
-      <div class="cal-item">
-        <div class="cal-month">MAR</div>
-        <div><div class="cal-name">Acompte IS T1</div><div class="cal-form">Formulaire 3514</div></div>
-      </div>
-      <div class="cal-item">
-        <div class="cal-month">AVR</div>
-        <div><div class="cal-name">Déclaration revenus</div><div class="cal-form">Formulaire 2042 + 2042-C-PRO</div></div>
-      </div>
-      <div class="cal-item">
-        <div class="cal-month">MAI</div>
-        <div><div class="cal-name">Liasse fiscale IS</div><div class="cal-form">Formulaire 2065 + annexes 2033</div></div>
-      </div>
-      <div class="cal-item">
-        <div class="cal-month">MAI</div>
-        <div><div class="cal-name">Comptes étrangers</div><div class="cal-form">Formulaire 3916-bis</div></div>
-      </div>
-      <div class="cal-item">
-        <div class="cal-month">JUN</div>
-        <div><div class="cal-name">Acompte IS T2</div><div class="cal-form">Formulaire 3514</div></div>
-      </div>
-      <div class="cal-item">
-        <div class="cal-month">SEP</div>
-        <div><div class="cal-name">Acompte IS T3</div><div class="cal-form">Formulaire 3514</div></div>
-      </div>
-      <div class="cal-item">
-        <div class="cal-month">DÉC</div>
-        <div><div class="cal-name">CFE</div><div class="cal-form">Cotisation foncière des entreprises</div></div>
-      </div>
-      <div class="cal-item">
-        <div class="cal-month" style="background:rgba(255,71,87,0.12);color:var(--danger);">MENS</div>
-        <div><div class="cal-name">Livre des recettes</div><div class="cal-form">Mise à jour obligatoire</div></div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"En tant qu'étudiant à l'UTBM, je donne des cours de maths via ProxiServ. Je gagne 400€ par mois en travaillant seulement le week-end."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">👨</div>
+        <div><div class="testi-name">Théo M.</div><div class="testi-role">Prestataire · Étudiant UTBM</div></div>
       </div>
     </div>
-  </section>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Avec l'abonnement Pro à 29€/mois, je remplis mon agenda facilement. J'ai arrêté de chercher des clients moi-même, ça vient tout seul."</div>
+      <div class="testi-author">
+        <div class="testi-avatar">👩</div>
+        <div><div class="testi-name">Sandra K.</div><div class="testi-role">Prestataire · Aide à domicile</div></div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  <!-- FOOTER -->
-  <footer>
-    <p style="margin-bottom:8px;">NEET AI Société — SASU en cours d'immatriculation — France</p>
-    <p><a href="terms.html">Mentions légales</a> · <a href="privacy.html">Politique de confidentialité</a> · <a href="mailto:contact@aicontentsystem.org">Contact</a></p>
-    <p style="margin-top:16px;font-family:var(--mono);font-size:11px;color:var(--text-3);">Powered by 9 autonomous AI agents · Built with Claude</p>
-  </footer>
+<div class="divider"></div>
 
+<!-- PROVIDER CTA -->
+<div class="section" id="devenir-prestataire">
+  <div class="provider-cta">
+    <div>
+      <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--terre);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:16px">Pour les prestataires</div>
+      <h2>Transformez vos compétences en <em style="font-style:italic;color:var(--terre)">revenus réguliers.</em></h2>
+      <p>Inscrivez-vous gratuitement, créez votre profil et commencez à recevoir des demandes de clients à Belfort dès aujourd'hui. Aucune expérience commerciale requise.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <button class="btn-primary" style="background:var(--orange)" onclick="openModal('provider')">Créer mon profil gratuitement</button>
+        <button class="btn-outline" style="border-color:rgba(255,255,255,0.3);color:var(--creme)" onclick="document.getElementById('tarifs').scrollIntoView({behavior:'smooth'})">Voir les tarifs</button>
+      </div>
+    </div>
+    <div class="provider-earnings">
+      <div style="font-family:'DM Mono',monospace;font-size:11px;color:var(--terre);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:16px">Revenus potentiels / mois</div>
+      <div class="earning-row">
+        <span class="earning-service">🐕 Garde de chien (10 jours)</span>
+        <div><div class="earning-amount">170€</div><div class="earning-period">net après commission</div></div>
+      </div>
+      <div class="earning-row">
+        <span class="earning-service">👶 Baby-sitting (20h)</span>
+        <div><div class="earning-amount">204€</div><div class="earning-period">net après commission</div></div>
+      </div>
+      <div class="earning-row">
+        <span class="earning-service">📚 Cours particuliers (16h)</span>
+        <div><div class="earning-amount">340€</div><div class="earning-period">net après commission</div></div>
+      </div>
+      <div class="earning-row" style="border-color:var(--terre)">
+        <span class="earning-service" style="color:var(--creme);font-weight:500">💰 Revenu combiné estimé</span>
+        <div><div class="earning-amount" style="font-size:24px">700€+</div><div class="earning-period">par mois</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Proxi<span>Serv</span></div>
+      <div class="footer-desc">La plateforme de services de proximité dédiée aux habitants de Belfort et du Territoire de Belfort.</div>
+    </div>
+    <div>
+      <div class="footer-heading">Services</div>
+      <ul class="footer-links">
+        <li><a href="#">Garde d'animaux</a></li>
+        <li><a href="#">Baby-sitting</a></li>
+        <li><a href="#">Ménage</a></li>
+        <li><a href="#">Aide seniors</a></li>
+        <li><a href="#">Cours particuliers</a></li>
+        <li><a href="#">Petits travaux</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Plateforme</div>
+      <ul class="footer-links">
+        <li><a href="#">Comment ça marche</a></li>
+        <li><a href="#">Devenir prestataire</a></li>
+        <li><a href="#">Tarifs</a></li>
+        <li><a href="#">Assurance & sécurité</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Légal</div>
+      <ul class="footer-links">
+        <li><a href="#">Mentions légales</a></li>
+        <li><a href="#">CGU</a></li>
+        <li><a href="#">Confidentialité</a></li>
+        <li><a href="#">Cookies</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ProxiServ — Belfort, Territoire de Belfort</span>
+    <span>contact@proxiserv-belfort.fr</span>
+  </div>
+</footer>
+
+<!-- MODAL BOOKING -->
+<div class="modal-overlay" id="modal-booking" onclick="closeModalOutside(event,'booking')">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('booking')">×</button>
+    <div class="modal-title">📋 Demande de service</div>
+    <div class="modal-sub">Remplissez ce formulaire et nous vous mettons en contact avec un prestataire disponible sous 24h.</div>
+    <div class="form-group">
+      <label class="form-label">Votre prénom</label>
+      <input type="text" class="form-input" placeholder="Ex: Marie">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Votre email</label>
+      <input type="email" class="form-input" placeholder="marie@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Votre téléphone</label>
+      <input type="tel" class="form-input" placeholder="06 XX XX XX XX">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Type de service souhaité</label>
+      <select class="form-select">
+        <option>🐕 Garde d'animaux</option>
+        <option>👶 Baby-sitting</option>
+        <option>🧹 Ménage à domicile</option>
+        <option>👴 Aide aux seniors</option>
+        <option>📚 Cours particuliers</option>
+        <option>🔧 Petits travaux</option>
+        <option>🚗 Transport & courses</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Message (optionnel)</label>
+      <input type="text" class="form-input" placeholder="Précisez vos besoins...">
+    </div>
+    <button class="btn-book" onclick="submitForm('booking')">Envoyer ma demande →</button>
+    <div class="success-msg" id="success-booking">✅ Demande reçue ! Nous vous contactons sous 24h pour vous mettre en relation avec un prestataire disponible à Belfort.</div>
+  </div>
+</div>
+
+<!-- MODAL PROVIDER -->
+<div class="modal-overlay" id="modal-provider" onclick="closeModalOutside(event,'provider')">
+  <div class="modal" style="position:relative">
+    <button class="modal-close" onclick="closeModal('provider')">×</button>
+    <div class="modal-title">💼 Devenir prestataire</div>
+    <div class="modal-sub">Rejoignez ProxiServ gratuitement et commencez à recevoir des demandes dès cette semaine à Belfort.</div>
+    <div class="form-group">
+      <label class="form-label">Votre prénom et nom</label>
+      <input type="text" class="form-input" placeholder="Ex: Jean Dupont">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-input" placeholder="jean@email.com">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Téléphone</label>
+      <input type="tel" class="form-input" placeholder="06 XX XX XX XX">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Service(s) proposé(s)</label>
+      <select class="form-select">
+        <option>🐕 Garde d'animaux</option>
+        <option>👶 Baby-sitting</option>
+        <option>🧹 Ménage à domicile</option>
+        <option>👴 Aide aux seniors</option>
+        <option>📚 Cours particuliers</option>
+        <option>🔧 Petits travaux</option>
+        <option>🚗 Transport & courses</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Votre quartier à Belfort</label>
+      <input type="text" class="form-input" placeholder="Ex: Centre-ville, Faubourg de France...">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Formule choisie</label>
+      <select class="form-select">
+        <option>Gratuit — Commission 20% uniquement</option>
+        <option>Professionnel — 29€/mois + 15% commission</option>
+        <option>Business — 59€/mois + 10% commission</option>
+      </select>
+    </div>
+    <button class="btn-book" onclick="submitForm('provider')">Créer mon profil →</button>
+    <div class="success-msg" id="success-provider">✅ Inscription reçue ! Vous recevrez un email de confirmation sous 24h pour activer votre profil ProxiServ à Belfort.</div>
+  </div>
 </div>
 
 <script>
-// Scroll animations
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((e, i) => {
-    if (e.isIntersecting) {
-      setTimeout(() => e.target.classList.add('visible'), i * 80);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-// Simulated live counter
-function animateValue(el, start, end, suffix, duration) {
-  const range = end - start;
-  const startTime = performance.now();
-  function update(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(start + range * eased) + (suffix || '');
-    if (progress < 1) requestAnimationFrame(update);
-  }
-  requestAnimationFrame(update);
+function openModal(type) {
+  document.getElementById('modal-'+type).classList.add('open');
+  document.body.style.overflow = 'hidden';
 }
+function closeModal(type) {
+  document.getElementById('modal-'+type).classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e, type) {
+  if (e.target === document.getElementById('modal-'+type)) closeModal(type);
+}
+function submitForm(type) {
+  document.getElementById('success-'+type).style.display = 'block';
+  setTimeout(() => closeModal(type), 3000);
+}
+function updatePrice() {
+  const base = parseInt(document.getElementById('bookService').value) || 20;
+  const dur = parseInt(document.getElementById('bookDuration').value) || 1;
+  const total = base * dur;
+  const commission = Math.round(total * 0.15);
+  document.getElementById('totalPrice').textContent = total + '€';
+  document.getElementById('commissionLine').textContent = 'dont ' + commission + '€ de commission ProxiServ';
+}
+// Set default date to tomorrow
+const tomorrow = new Date();
+tomorrow.setDate(tomorrow.getDate()+1);
+const dateInput = document.getElementById('bookDate');
+if(dateInput) dateInput.value = tomorrow.toISOString().split('T')[0];
 </script>
 </body>
 </html>
